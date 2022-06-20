@@ -18,7 +18,7 @@ namespace IKBasvuru.DATA.Domain
         public bool KVKKCheck { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
-        public JobPosition? JobPosition { get; set; }
+        public virtual JobPosition? JobPosition { get; set; }
         public int? JobPositionId { get; set; }
         public string? FilePath { get; set; }
     }
