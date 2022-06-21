@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IKBasvuru.DATA.Domain
 {
-    public class JobApplication : BaseEntity , IEntity 
+    public class JobApplication : IEntity 
     {
         public int Id { get; set; }
         public string? Name { get; set; }
