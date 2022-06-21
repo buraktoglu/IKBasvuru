@@ -49,6 +49,8 @@ namespace IKBasvuru.DATA.Context
                 entity.Property(e => e.KVKKCheck).IsRequired();
                 
                 entity.Property(e => e.PhoneNumber).IsRequired();
+
+                entity.Property(e => e.Email).IsRequired();
                 
                 entity.Property(e => e.Address).IsRequired();
                 
@@ -70,7 +72,7 @@ namespace IKBasvuru.DATA.Context
                 
                 entity.Property(e => e.Description).IsRequired();
             });
-            //Configure domain classes using modelBuilder here..
+
         }
 
 

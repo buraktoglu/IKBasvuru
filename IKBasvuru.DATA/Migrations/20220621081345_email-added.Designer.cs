@@ -4,6 +4,7 @@ using IKBasvuru.DATA.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IKBasvuru.DATA.Migrations
 {
     [DbContext(typeof(IKBasvuruContext))]
-    partial class IKBasvuruContextModelSnapshot : ModelSnapshot
+    [Migration("20220621081345_email-added")]
+    partial class emailadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

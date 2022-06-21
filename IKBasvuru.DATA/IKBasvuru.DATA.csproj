@@ -20,11 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\Abstract\" />
-    <Folder Include="Repositories\Concrete\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IKBasvuru.COMMON\IKBasvuru.COMMON.csproj" />
   </ItemGroup>
 
