@@ -39,5 +39,18 @@ namespace IKBasvuru.UI.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Test()
+        {
+            int i = 0;
+            return View(i);
+        }
+
+        [HttpPost]
+        public IActionResult Test(int i)
+        {
+            return View();
+        }
     }
 }
