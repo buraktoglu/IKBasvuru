@@ -33,7 +33,7 @@ namespace IKBasvuru.UI.Areas.User.Controllers
                 },
 
                 MaritalStatuses = new List<MaritalStatus>()
-                { 
+                {
                     MaritalStatus.Single,
                     MaritalStatus.Married,
                     MaritalStatus.Widow,
@@ -59,14 +59,14 @@ namespace IKBasvuru.UI.Areas.User.Controllers
                 PhoneNumber = applicationVM.PhoneNumber,
                 Address = applicationVM.Address,
                 JobPositionId = applicationVM.JobPositionId,
-                FilePath = applicationVM.FilePath
+                FilePath = "/asdasd"
             };
 
             _jobApplicationRepository.Add(jobApplication);
 
             //Log
 
-            return View("Index" , "User");
+            return RedirectToAction("Application", "User");
         }
     }
 }

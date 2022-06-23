@@ -1,5 +1,4 @@
-﻿@using IKBasvuru.DATA.ViewModels
-@model ApplicationVM
+﻿@model ApplicationVM
 
 @{
     ViewData["Title"] = "Ozgecmis Yukleme";
@@ -16,7 +15,7 @@
         <div class="row col-md-3">
             <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
             <label class="switch">
-                <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox" id="isBarcoded">
+                <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                 <slider class="slider round">
                 </slider>
             </label>
@@ -30,7 +29,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group mt-md-0">
-                <label asp-for="" class="control-label">İsim</label>
+                <label asp-for="Name" class="control-label">İsim</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -43,15 +42,15 @@
 
             <div class="form-group">
                 <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
-                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","JobPositionId"))" class="form-control">
-                   @* <option hidden disable selected>İş Pozisyonu Seçiniz</option>*@
+                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Description"))" class="form-control">
+                    <option hidden disable selected>İş Pozisyonu Seçiniz</option>
                 </select>
                 <span asp-validation-for="JobPositionId" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Cinsiyet</label>
-                <select asp-for="Gender" asp-items="@(new SelectList(Model.Genders, "Id","Gender"))" class="form-control">
+                <select asp-for="Gender" asp-items="@(new SelectList(Model.Genders))" class="form-control">
                     <option hidden disable selected>Cinsiyet</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
@@ -59,7 +58,7 @@
 
             <div class="form-group">
                 <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
-                <select asp-for="MaritalStatus" asp-items="@(new SelectList(Model.MaritalStatuses, "Id","MaritalStatus"))" class="form-control">
+                <select asp-for="MaritalStatus" asp-items="@(new SelectList(Model.MaritalStatuses))" class="form-control">
                     <option hidden disable selected>Medeni Hal</option>
                 </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
@@ -107,7 +106,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <a asp-area="User" asp-controller="Asset" asp-action="Index" class="btn btn-danger col-md-12">Listeye Geri Dön</a>
+                    <a asp-area="User" asp-controller="User" asp-action="Application" class="btn btn-danger col-md-12">Listeye Geri Dön</a>
                 </div>
 
             </div>
