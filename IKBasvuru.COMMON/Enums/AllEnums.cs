@@ -8,16 +8,16 @@ namespace IKBasvuru.COMMON.Enums
 {
     public enum Gender
     {
-        Unknown = 0,
+        Female = 0,
         Male = 1,
-        Female = 2
+        Unknown = 2
     }
 
     public enum MaritalStatus
     {
-        Married = 0,
-        Divorced = 1,
-        Single = 2,
-        Widow = 3,
+        Single = 0,
+        Married = 1,
+        Widow = 2,
+        Divorced = 3
     }
 }

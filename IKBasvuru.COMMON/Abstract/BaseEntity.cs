@@ -11,7 +11,7 @@ namespace IKBasvuru.COMMON.Abstract
     {
         public bool IsActive { get; set; } = true;
 
-        public string CreatedBy { get; set; } = "Test-Developer";
+        //public string CreatedBy { get; set; } = "Test-Developer";
 
         [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;

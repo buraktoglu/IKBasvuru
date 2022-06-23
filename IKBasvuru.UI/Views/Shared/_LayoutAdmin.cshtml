@@ -28,73 +28,48 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
 
                 <div class="sidebar-brand-text mx-3">
 
-                    @*<img src="/img/logo-ultia.svg" alt="...">*@
+                    <img src="/img/millirelogo.png" alt="...">
                 </div>
             </a>
 
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Admin Paneli</span>
-                </a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                <span>SİSTEM YÖNETİMİ</span>
+            <div class="sidebar-heading mb-md-2">
+                <span>YÖNETİCİ PANELİ</span>
             </div>
-
-            <!-- Nav Item - Listeler -->
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-fw fa-file"></i>
-                    <span>Listeler</span>
-                </a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                <span>DİĞER MENÜLER</span>
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Varlıklarım -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-                   aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Sayfalar</span>
+                <a asp-area="User" asp-controller="Asset" asp-action="Index" class="nav-link">
+                    Ana Sayfa
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-gradient-light py-2 collapse-inner rounded">
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Liste Kısayolları</h6>
-                        <a class="collapse-item" asp-controller="Brand" asp-action="Index">Marka</a>
-                        <a class="collapse-item" asp-controller="Model" asp-action="Index">Model</a>
-                        <a class="collapse-item" asp-controller="Currency" asp-action="Index">Para Birimi</a>
-                        <a class="collapse-item" asp-controller="Unit" asp-action="Index">Birim</a>
-                        <a class="collapse-item" asp-controller="AssetGroup" asp-action="Index">Ürün Grubu</a>
-                        <a class="collapse-item" asp-controller="OwningReason" asp-action="Index">Zimmet Nedeni</a>
-                        <a class="collapse-item" asp-controller="RetiringReason" asp-action="Index">Emeklilik Nedeni</a>
-                    </div>
-                </div>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <!-- Nav Item - Ekibimin Varlıkları -->
+            <li class="nav-item">
+                <a asp-area="User" asp-controller="Asset" asp-action="Index" class="nav-link">
+                    İş Pozisyonu Ekleme
+                </a>
+            </li>
+
+            <!-- Nav Item - Tüm Varlıklar -->
+            <li class="nav-item">
+                <a asp-area="User" asp-controller="Asset" asp-action="Index" class="nav-link">
+                    Aday Görüntüleme
+                </a>
+            </li>
+
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -167,7 +142,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Ultia Asset Management Module 2022 - POWERUSER</span>
+                        <span>Copyright &copy; MilliRe İnsan Kaynakları 2022</span>
                     </div>
                 </div>
             </footer>

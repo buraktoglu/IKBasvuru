@@ -116,7 +116,7 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public void Delete(TEntity entity)
+        public void HardDelete(TEntity entity)
         {
             using (var context = new Tcontext())
             {
@@ -126,7 +126,7 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task HardDeleteAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {
@@ -136,7 +136,7 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public void SoftDelete(TEntity entity)
+        public void Delete(TEntity entity)
         {
             using (var context = new Tcontext())
             {
@@ -146,7 +146,7 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public async Task SoftDeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {

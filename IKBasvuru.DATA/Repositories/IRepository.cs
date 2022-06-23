@@ -21,12 +21,12 @@ namespace IKBasvuru.DATA.Repositories
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
-        void SoftDelete(T entity);
+        void HardDelete(T entity);
 
         Task AddAsync(T entity);
         Task<T> MasterAddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
-        Task SoftDeleteAsync(T entity);
+        Task HardDeleteAsync(T entity);
     }
 }
