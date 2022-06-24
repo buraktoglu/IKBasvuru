@@ -71,7 +71,7 @@ namespace IKBasvuru.UI.Controllers
 
             _jobPositionRepository.Add(jobPosition);
 
-            return RedirectToAction("ListApplications", "Admin");
+            return RedirectToAction("ListPositions", "Admin");
         }
 
         [HttpGet]
@@ -89,23 +89,23 @@ namespace IKBasvuru.UI.Controllers
 
             _jobPositionRepository.Update(jobPosition);
 
-            return RedirectToAction("ListApplications", "Admin");
+            return RedirectToAction("ListPositions", "Admin");
         }
 
         [HttpGet]
         public IActionResult DeletePosition(int Id)
         {
             JobPosition jobPosition = _jobPositionRepository.Get(x => x.Id == Id && x.IsActive == true);
-
             return View(jobPosition);
         }
 
         [HttpPost]
         public IActionResult DeletePosition(JobPosition jobPosition)
         {
-            _jobPositionRepository.Delete(jobPosition);
+            JobPosition jobPositionDeleted = _jobPositionRepository.Get(x => x.Id == jobPosition.Id && x.IsActive == true);
+            _jobPositionRepository.Delete(jobPositionDeleted);
 
-            return RedirectToAction("ListApplications", "Admin");
+            return RedirectToAction("ListPositions", "Admin");
         }
     }
 }
