@@ -14,18 +14,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 
-// Authentication service
-builder.Services.Configure<LdapConfig>(builder.Configuration.GetSection("ldap"));
-builder.Services.AddScoped<IAuthenticationService, LdapAuthenticationService>();
-
 //DIC for domain classes
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 
 builder.Services.AddSession(s => { s.IdleTimeout = TimeSpan.FromMinutes(10); });
 
+if (builder.Configuration.GetValue<bool>("UseLDAPLogin"))
+{
+    // Authentication service
+    builder.Services.Configure<LdapConfig>(builder.Configuration.GetSection("ldap"));
+    builder.Services.AddScoped<IAuthenticationService, LdapAuthenticationService>();
 
-builder.Services.AddMvc(config =>
+    builder.Services.AddMvc(config =>
 {
     // Requiring authenticated users on the site globally
     var policy = new AuthorizationPolicyBuilder()
@@ -34,30 +35,30 @@ builder.Services.AddMvc(config =>
     config.Filters.Add(new AuthorizeFilter(policy));
 });
 
-// Authentication
-var cookiesConfig = builder.Configuration.GetSection("cookies").Get<CookiesConfig>();
+    // Authentication
+    var cookiesConfig = builder.Configuration.GetSection("cookies").Get<CookiesConfig>();
 
-builder.Services.AddAuthentication(
-    CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
+    builder.Services.AddAuthentication(
+        CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.Cookie.Name = cookiesConfig.CookieName;
+            options.LoginPath = cookiesConfig.LoginPath;
+            options.LogoutPath = cookiesConfig.LogoutPath;
+            options.AccessDeniedPath = cookiesConfig.AccessDeniedPath;
+            options.ReturnUrlParameter = cookiesConfig.ReturnUrlParameter;
+        });
+
+
+    //policies are added in the account controller, after a valid login
+    builder.Services.AddAuthorization(options =>
     {
-        options.Cookie.Name = cookiesConfig.CookieName;
-        options.LoginPath = cookiesConfig.LoginPath;
-        options.LogoutPath = cookiesConfig.LogoutPath;
-        options.AccessDeniedPath = cookiesConfig.AccessDeniedPath;
-        options.ReturnUrlParameter = cookiesConfig.ReturnUrlParameter;
+        options.AddPolicy("Require.Ldap.User", policy =>
+                          policy.RequireClaim("aspnetcore.ldap.user", "true")
+                                .AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme)
+                              );
     });
-
-
-//policies are added in the account controller, after a valid login
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Require.Ldap.User", policy =>
-                      policy.RequireClaim("aspnetcore.ldap.user", "true")
-                            .AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme)
-                          );
-});
-
+}
 
 var app = builder.Build();
 
