@@ -9,10 +9,12 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
+        private readonly IJobPositionRepository _jobPositionRepository;
 
-        public AdminController(IJobApplicationRepository jobApplicationRepository)
+        public AdminController(IJobApplicationRepository jobApplicationRepository, IJobPositionRepository jobPositionRepository)
         {
             _jobApplicationRepository = jobApplicationRepository;
+            _jobPositionRepository = jobPositionRepository;
         }
 
         [HttpGet]
@@ -43,13 +45,17 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
 
             _jobApplicationRepository.Delete(jobApplication);
 
+            //todo : modifiedby ve modifieddate güncellenmeli - accountcontroller implemente edildikten sonra
+
             return RedirectToAction("ListApplications", "Admin");
         }
 
         [HttpGet]
         public IActionResult ListPositions()
         {
-            return View();
+            List<JobPosition> jobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true);
+
+            return View(jobPositions);
         }
 
         [HttpGet]
@@ -61,7 +67,31 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddPosition(int i)
         {
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("ListApplications", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult UpdatePosition()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePosition(int i)
+        {
+            return RedirectToAction("ListApplications", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult DeletePosition()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeletePosition(int i)
+        {
+            return RedirectToAction("ListApplications", "Admin");
         }
     }
 }
