@@ -63,7 +63,15 @@ namespace IKBasvuru.UI.Controllers
                 FileName = "/test-file-name"
             };
 
-            _jobApplicationRepository.Add(jobApplication);
+            try
+            {
+                _jobApplicationRepository.Add(jobApplication);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
 
             //Log
 

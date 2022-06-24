@@ -43,7 +43,14 @@ namespace IKBasvuru.UI.Controllers
         {
             JobApplication jobApplication = _jobApplicationRepository.Get(x => x.Id == applicationListVM.Id && x.IsActive == true);
 
-            _jobApplicationRepository.Delete(jobApplication);
+            try
+            {
+                _jobApplicationRepository.Delete(jobApplication);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             //todo : modifiedby ve modifieddate güncellenmeli - accountcontroller implemente edildikten sonra
 
@@ -69,7 +76,15 @@ namespace IKBasvuru.UI.Controllers
         {
             //todo : jobPosition.ModifiedBy after account controller
 
-            _jobPositionRepository.Add(jobPosition);
+            try
+            {
+                _jobPositionRepository.Add(jobPosition);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
             return RedirectToAction("ListPositions", "Admin");
         }
@@ -87,7 +102,15 @@ namespace IKBasvuru.UI.Controllers
         {
             //todo : jobPosition.ModifiedBy after account controller
 
-            _jobPositionRepository.Update(jobPosition);
+            try
+            {
+                _jobPositionRepository.Update(jobPosition);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
             return RedirectToAction("ListPositions", "Admin");
         }
@@ -103,7 +126,15 @@ namespace IKBasvuru.UI.Controllers
         public IActionResult DeletePosition(JobPosition jobPosition)
         {
             JobPosition jobPositionDeleted = _jobPositionRepository.Get(x => x.Id == jobPosition.Id && x.IsActive == true);
-            _jobPositionRepository.Delete(jobPositionDeleted);
+
+            try
+            {
+                _jobPositionRepository.Delete(jobPositionDeleted);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             return RedirectToAction("ListPositions", "Admin");
         }
