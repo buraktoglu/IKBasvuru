@@ -1,4 +1,5 @@
 ﻿using IKBasvuru.COMMON.Enums;
+using IKBasvuru.CORE.Validations;
 using IKBasvuru.DATA.Domain;
 using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
@@ -23,30 +24,13 @@ namespace IKBasvuru.UI.Controllers
         {
             return View(new ApplicationVM()
             {
-                JobPositions = _jobPositionRepository.GetAll(),
-
-                Genders = new List<Gender>()
-                {
-                    Gender.Female,
-                    Gender.Male,
-                    Gender.Unknown
-                },
-
-                MaritalStatuses = new List<MaritalStatus>()
-                {
-                    MaritalStatus.Single,
-                    MaritalStatus.Married,
-                    MaritalStatus.Widow,
-                    MaritalStatus.Divorced
-                }
+                JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
             });
         }
 
         [HttpPost]
         public IActionResult Application(ApplicationVM applicationVM)
         {
-            //Auto-mapper implemente edilebilir
-
             JobApplication jobApplication = new JobApplication()
             {
                 Name = applicationVM.Name,
@@ -65,6 +49,7 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
+                new JobApplicationValidator().Validate(jobApplication);
                 _jobApplicationRepository.Add(jobApplication);
             }
             catch (Exception)
