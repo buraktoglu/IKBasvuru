@@ -41,7 +41,7 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Delete(ApplicationListVM applicationListVM)
         {
-            JobApplication jobApplication = _jobApplicationRepository.Get(x => x.Id == applicationListVM.Id);
+            JobApplication jobApplication = _jobApplicationRepository.Get(x => x.Id == applicationListVM.Id && x.IsActive == true);
 
             _jobApplicationRepository.Delete(jobApplication);
 
@@ -61,36 +61,50 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult AddPosition()
         {
-            return View();
+            return View(new JobPosition());
         }
 
         [HttpPost]
-        public IActionResult AddPosition(int i)
+        public IActionResult AddPosition(JobPosition jobPosition)
         {
+            //todo : jobPosition.ModifiedBy after account controller
+
+            _jobPositionRepository.Add(jobPosition);
+
             return RedirectToAction("ListApplications", "Admin");
         }
 
         [HttpGet]
-        public IActionResult UpdatePosition()
+        public IActionResult UpdatePosition(int Id)
         {
-            return View();
+            JobPosition jobPosition = _jobPositionRepository.Get(x => x.Id == Id && x.IsActive == true);
+
+            return View(jobPosition);
         }
 
         [HttpPost]
-        public IActionResult UpdatePosition(int i)
+        public IActionResult UpdatePosition(JobPosition jobPosition)
         {
+            //todo : jobPosition.ModifiedBy after account controller
+
+            _jobPositionRepository.Update(jobPosition);
+
             return RedirectToAction("ListApplications", "Admin");
         }
 
         [HttpGet]
-        public IActionResult DeletePosition()
+        public IActionResult DeletePosition(int Id)
         {
-            return View();
+            JobPosition jobPosition = _jobPositionRepository.Get(x => x.Id == Id && x.IsActive == true);
+
+            return View(jobPosition);
         }
 
         [HttpPost]
-        public IActionResult DeletePosition(int i)
+        public IActionResult DeletePosition(JobPosition jobPosition)
         {
+            _jobPositionRepository.Delete(jobPosition);
+
             return RedirectToAction("ListApplications", "Admin");
         }
     }
