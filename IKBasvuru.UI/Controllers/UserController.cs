@@ -31,6 +31,12 @@ namespace IKBasvuru.UI.Controllers
         [HttpPost]
         public IActionResult Application(ApplicationVM applicationVM)
         {
+            if (applicationVM.FormFile != null)
+            {
+                var extent = Path.GetExtension(applicationVM.FormFile.FileName);
+                var fileName = 
+            }
+
             JobApplication jobApplication = new JobApplication()
             {
                 Name = applicationVM.Name,

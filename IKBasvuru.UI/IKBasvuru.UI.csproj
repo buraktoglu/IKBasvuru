@@ -20,4 +20,8 @@
     <ProjectReference Include="..\IKBasvuru.DATA\IKBasvuru.DATA.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\CVs\" />
+  </ItemGroup>
+
 </Project>

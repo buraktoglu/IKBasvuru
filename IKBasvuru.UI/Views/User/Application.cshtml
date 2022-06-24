@@ -8,7 +8,7 @@
 <h1 class="text-center">Özgeçmiş Yükleme</h1>
 
 <hr />
-<form asp-controller="User" asp-action="Application" method="post">
+<form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
 
     <div class="row">
         <div class="col-md-6">
@@ -53,7 +53,7 @@
 
             <div class="row col-md-6">
                 <label for="exampleFormControlFile1">Özgeçmişinizi yükleyiniz. (PDF)</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="FormFile" class="form-control-file" id="exampleFormControlFile1">
             </div>
 
         </div>
