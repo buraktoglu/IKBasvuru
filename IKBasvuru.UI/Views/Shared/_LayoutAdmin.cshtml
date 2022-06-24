@@ -49,27 +49,26 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Varlıklarım -->
-            <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Admin" asp-action="ListApplications" class="nav-link">
-                    Ana Sayfa
-                </a>
-            </li>
-
-            <!-- Nav Item - Ekibimin Varlıkları -->
-            <li class="nav-item">
-                <a asp-area="Admin" asp-controller="Admin" asp-action="AddPosition" class="nav-link">
-                    İş Pozisyonu Ekleme
-                </a>
-            </li>
-
-            <!-- Nav Item - Tüm Varlıklar -->
+            <!-- Nav Item - Aday Görüntüleme-->
             <li class="nav-item">
                 <a asp-area="Admin" asp-controller="Admin" asp-action="ListApplications" class="nav-link">
                     Aday Görüntüleme
                 </a>
             </li>
 
+            <!-- Nav Item - İş Pozisyonları Listesi -->
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="ListPositions" class="nav-link">
+                    İş Pozisyonları Listesi
+                </a>
+            </li>
+
+            <!-- Nav Item - İş Pozisyonu Ekleme -->
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="AddPosition" class="nav-link">
+                    İş Pozisyonu Ekleme
+                </a>
+            </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -109,7 +108,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-white small">buraktoglu</span>
+                                <span class="mr-2 d-none d-lg-inline text-white small">Kullanici Adi</span>
                                 <img class="img-profile rounded-circle"
                                      src="~/img/undraw_profile.svg">
                             </a>
