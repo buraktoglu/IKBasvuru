@@ -4,9 +4,9 @@ using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IKBasvuru.UI.Areas.User.Controllers
+namespace IKBasvuru.UI.Controllers
 {
-    [Area("User")]
+
     public class UserController : Controller
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
