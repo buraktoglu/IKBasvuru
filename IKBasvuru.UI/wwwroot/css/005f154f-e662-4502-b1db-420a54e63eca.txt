@@ -1,4 +1,5 @@
-﻿@model ApplicationVM
+@using IKBasvuru.DATA.ViewModels
+@model ApplicationVM
 
 @{
     ViewData["Title"] = "Ozgecmis Yukleme";
@@ -8,23 +9,28 @@
 <h1 class="text-center">Özgeçmiş Yükleme</h1>
 
 <hr />
-<form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
+<form asp-area="User" asp-controller="User" asp-action="Application" method="post">
+
+    <div class="form-group row col-md-12">
+
+        <div class="row col-md-3">
+            <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
+            <label class="switch">
+                <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox" id="isBarcoded">
+                <slider class="slider round">
+                </slider>
+            </label>
+        </div>
+
+    </div>
 
     <div class="row">
         <div class="col-md-6">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
-                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Description"))" class="form-control">
-                    <option hidden disable selected>İş Pozisyonu Seçiniz</option>
-                </select>
-                <span asp-validation-for="JobPositionId" class="text-danger"></span>
-            </div>
-
             <div class="form-group mt-md-0">
-                <label asp-for="Name" class="control-label">İsim</label>
+                <label asp-for="" class="control-label">İsim</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -36,29 +42,44 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
+                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","JobPositionId"))" class="form-control">
+                   @* <option hidden disable selected>İş Pozisyonu Seçiniz</option>*@
+                </select>
+                <span asp-validation-for="JobPositionId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Gender" class="control-label">Cinsiyet</label>
-                <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control">
-                    <option hidden disable selected="selected">Cinsiyet Seçiniz</option>
+                <select asp-for="Gender" asp-items="@(new SelectList(Model.Genders, "Id","Gender"))" class="form-control">
+                    <option hidden disable selected>Cinsiyet</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
-                <select asp-for="MaritalStatus" asp-items="@Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
-                    <option hidden disable selected="selected">Medeni Hal Seçiniz</option>
+                <select asp-for="MaritalStatus" asp-items="@(new SelectList(Model.MaritalStatuses, "Id","MaritalStatus"))" class="form-control">
+                    <option hidden disable selected>Medeni Hal</option>
                 </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
 
-            <div class="row col-md-6">
-                <label for="exampleFormControlFile1">Özgeçmişinizi yükleyiniz. (PDF)</label>
-                <input asp-for="FormFile" type="file" name="FormFile" class="form-control-file" id="exampleFormControlFile1">
+
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
             </div>
 
         </div>
 
         <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Adres</label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
 
             <div class="form-group mt-md-0">
                 <label asp-for="Email" class="control-label">Email Adresi</label>
@@ -74,39 +95,26 @@
 
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label">Doğum Tarihi</label>
-                <input type="date" asp-for="BirthDate" class="form-control" value="2000-01-01" />
+                <input type="date" asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Address" class="control-label">Adres</label>
-                <textarea asp-for="Address" class="form-control"></textarea>
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-
-            <div class="form-group row col-md-12">
-
-                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
-                <label class="switch">
-                    <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
-                    <slider class="slider round">
-                    </slider>
-                </label>
-            </div>
 
             <div class="form-group row mt-md-5">
 
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <input type="submit" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
                 </div>
 
-            </div>
-        </div>
-    </div>
+                <div class="col-md-6">
+                    <a asp-area="User" asp-controller="Asset" asp-action="Index" class="btn btn-danger col-md-12">Listeye Geri Dön</a>
+                </div>
 
-    <div class="text-center">
-        @Html.ValidationSummary()
-        @*<a class="small" asp-controller="Account" asp-action="Login">Forgot Password?</a>*@
+            </div>
+
+
+
+        </div>
     </div>
 </form>
 
@@ -119,9 +127,9 @@
         height: 24px;
     }
 
-        .switch input {
-            display: none;
-        }
+    .switch input {
+        display: none;
+    }
 
     .slider {
         position: absolute;
@@ -134,16 +142,16 @@
         transition: .4s;
     }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-        }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+    }
 
     /* include generated hidden field here */
     input[type="checkbox"]:checked + input[type="hidden"] + .slider,
@@ -168,8 +176,8 @@
         border-radius: 40px;
     }
 
-        .slider.round:before {
-            border-radius: 50%;
-        }
+    .slider.round:before {
+        border-radius: 50%;
+    }
 
 </style>

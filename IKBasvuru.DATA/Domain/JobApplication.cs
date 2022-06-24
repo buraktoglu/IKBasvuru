@@ -22,12 +22,12 @@ namespace IKBasvuru.DATA.Domain
         public string? Surname { get; set; }
 
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
-        public Gender Gender { get; set; }
+        public Gender? Gender { get; set; }
 
         public DateTime BirthDate { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
-        public MaritalStatus MaritalStatus { get; set; }
+        public MaritalStatus? MaritalStatus { get; set; }
         public bool KVKKCheck { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]

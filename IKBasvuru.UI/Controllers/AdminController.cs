@@ -20,7 +20,7 @@ namespace IKBasvuru.UI.Controllers
             _jobPositionRepository = jobPositionRepository;
         }
 
-        [Authorize(Policy = "Require.Ldap.User", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+       // [Authorize(Policy = "Require.Ldap.User", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult ListApplications()
         {
@@ -82,8 +82,13 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
-                new JobPositionValidator().Validate(jobPosition);
-                _jobPositionRepository.Add(jobPosition);
+                var validate = new JobPositionValidator().Validate(jobPosition);
+
+                if (validate.IsValid)
+                {
+                    _jobPositionRepository.Add(jobPosition);
+
+                }
             }
             catch (Exception)
             {
@@ -109,8 +114,13 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
-                new JobPositionValidator().Validate(jobPosition);
-                _jobPositionRepository.Update(jobPosition);
+                var validate = new JobPositionValidator().Validate(jobPosition);
+
+                if (validate.IsValid)
+                {
+                    _jobPositionRepository.Update(jobPosition);
+
+                }
             }
             catch (Exception)
             {

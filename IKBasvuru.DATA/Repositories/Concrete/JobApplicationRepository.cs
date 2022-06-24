@@ -27,7 +27,8 @@ namespace IKBasvuru.DATA.Repositories.Concrete
                     Id = item.Id,
                     Name = item.Name,
                     Surname = item.Surname,
-                    FileName = item.FileName
+                    FileName = item.FileName,
+                    FilePath = item.FilePath
                 };
 
                 list.Add(vm);
