@@ -54,10 +54,20 @@ namespace IKBasvuru.DATA.Context
                 
                 entity.Property(e => e.Address).IsRequired();
                 
+                entity.Property(e => e.FileName).IsRequired();
+
                 entity.Property(e => e.FilePath).IsRequired();
                 
                 entity.HasIndex(e => e.JobPositionId, "IX_JobApplication_JobPositionId");
-                
+
+                entity.Property(e => e.IsActive).IsRequired();
+
+                entity.Property(e => e.CreatedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedBy).IsRequired();
+
                 entity.HasOne(e => e.JobPosition)
                 .WithMany(p => p.JobApplication)
                 .HasForeignKey(e => e.JobPositionId)
@@ -71,6 +81,14 @@ namespace IKBasvuru.DATA.Context
                 entity.Property(e => e.Name).IsRequired();
                 
                 entity.Property(e => e.Description).IsRequired();
+
+                entity.Property(e => e.IsActive).IsRequired();
+
+                entity.Property(e => e.CreatedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedBy).IsRequired();
             });
 
         }

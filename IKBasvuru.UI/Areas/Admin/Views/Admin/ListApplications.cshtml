@@ -1,0 +1,72 @@
+﻿@model List<ApplicationListVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Varlık Listesi</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            İsim
+                        </th>
+                        <th>
+                            Soyisim
+                        </th>
+                        <th>
+                            Dosya Adı
+                        </th>
+                        <th class="col-md-2"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        @Html.HiddenFor(modelItem => item.Id)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FileName)
+                        </td>
+                        <td class="d-flex justify-content-between">
+                            <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
+                        </td>
+                        
+                    </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                </tfoot>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <!-- Page level plugins -->
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/datatables-demo.js"></script>
+
+    <!-- Custom styles for this page -->
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+}

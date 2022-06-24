@@ -1,4 +1,5 @@
 ﻿using IKBasvuru.DATA.Domain;
+using IKBasvuru.DATA.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace IKBasvuru.DATA.Repositories.Abstract
 {
     public interface IJobApplicationRepository : IRepository<JobApplication>
     {
+        public List<ApplicationListVM> GetListOfApplications();
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IKBasvuru.DATA.Migrations
 {
     [DbContext(typeof(IKBasvuruContext))]
-    [Migration("20220621081345_email-added")]
-    partial class emailadded
+    [Migration("20220623191408_first-mig")]
+    partial class firstmig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,7 +39,14 @@ namespace IKBasvuru.DATA.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -50,6 +57,9 @@ namespace IKBasvuru.DATA.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("JobPositionId")
                         .HasColumnType("int");
 
@@ -58,6 +68,13 @@ namespace IKBasvuru.DATA.Migrations
 
                     b.Property<int>("MaritalStatus")
                         .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -86,9 +103,22 @@ namespace IKBasvuru.DATA.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .IsRequired()

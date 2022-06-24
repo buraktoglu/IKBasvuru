@@ -59,7 +59,8 @@ namespace IKBasvuru.UI.Areas.User.Controllers
                 PhoneNumber = applicationVM.PhoneNumber,
                 Address = applicationVM.Address,
                 JobPositionId = applicationVM.JobPositionId,
-                FilePath = "/asdasd"
+                FilePath = "/test-file-path",
+                FileName = "/test-file-name"
             };
 
             _jobApplicationRepository.Add(jobApplication);

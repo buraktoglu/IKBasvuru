@@ -11,12 +11,10 @@ namespace IKBasvuru.COMMON.Abstract
     {
         public bool IsActive { get; set; } = true;
 
-        //public string CreatedBy { get; set; } = "Test-Developer";
-
         [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        public string ModifiedBy { get; set; } = "Test-Developer";
+        public string ModifiedBy { get; set; } = "Kullanici Ilk Giris";
 
         [Column(TypeName = "datetime")]
         public DateTime ModifiedDate { get; set; } = DateTime.Now;

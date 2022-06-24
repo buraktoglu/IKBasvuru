@@ -1,0 +1,32 @@
+﻿@model ApplicationListVM
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h3>Varlığı silmek istediğinize emin misiniz?</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Admin" asp-action="Delete" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Özgeçmişi silinecek aday: @Model.Name @Model.Surname</label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sil" class="btn btn-danger"/>
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Delete" class="btn btn-primary">Listeye Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
