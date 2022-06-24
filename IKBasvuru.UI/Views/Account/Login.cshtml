@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@model IKBasvuru.COMMON.ViewModels.LoginViewModel
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,24 +43,26 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Hoşgeldiniz!</h1>
                                     </div>
-            
-                                        <form class="user"  asp-controller="Account" asp-action="Login" method="post">
-                                            
-                                                @*<div class="form-group">
-                                                    <input asp-for="Username" type="text" class="form-control form-control-user"
-                                                           id="exampleInputUsername" aria-describedby="emailHelp"
-                                                           placeholder="Kullanıcı Adı">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input asp-for="Password" type="password" class="form-control form-control-user"
-                                                           id="exampleInputPassword" placeholder="Şifre">
-                                                </div>*@
 
-                                                <input type="submit" value="Giriş Yap" class="btn btn-primary btn-user btn-block" />
+                                    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="/" class="user" method="post">
 
-                                            
-                                            <hr>
-                                        </form>
+                                         
+
+                                        <div class="form-group">                                          
+                                            <input asp-for="Username" type="text" class="form-control form-control-user"
+                                                   id="exampleInputUsername" aria-describedby="emailHelp"
+                                                   placeholder="Kullanıcı Adı">
+                                        </div>
+                                        <div class="form-group">
+                                            <input asp-for="Password" type="password" class="form-control form-control-user"
+                                                   id="exampleInputPassword" placeholder="Şifre">
+                                        </div>
+
+                                        <input type="submit" value="Giriş Yap" class="btn btn-primary btn-user btn-block" />
+
+
+                                        <hr>
+                                    </form>
                                     <div class="text-center">
                                         <a class="small" asp-controller="Account" asp-action="Login">Forgot Password?</a>
                                     </div>
