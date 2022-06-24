@@ -2,6 +2,8 @@
 using IKBasvuru.DATA.Domain;
 using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IKBasvuru.UI.Controllers
@@ -18,6 +20,7 @@ namespace IKBasvuru.UI.Controllers
             _jobPositionRepository = jobPositionRepository;
         }
 
+        [Authorize(Policy = "Require.Ldap.User", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult ListApplications()
         {

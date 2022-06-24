@@ -31,8 +31,13 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
-
+                <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+                       <div class="container my-auto">
+                    
+                    <div class="copyright text-center my-auto">
+                        <img src="/img/millirelogo.png" alt="...">
+                    </div>
+                </div>
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -41,7 +46,7 @@
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container">
 
                     @RenderBody()
 
@@ -52,12 +57,7 @@
             <!-- End of Main Content -->
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    
-                    <div class="copyright text-center my-auto">
-                        <img src="/img/millirelogo.png" alt="...">
-                    </div>
-                </div>
+             
             </footer>
             <!-- End of Footer -->
 

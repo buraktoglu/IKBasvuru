@@ -1,21 +1,64 @@
+using IKBasvuru.COMMON.Models;
+using IKBasvuru.COMMON.Services;
 using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.Repositories.Concrete;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
 
 //DIC for domain classes
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 
-builder.Services.AddSession(s =>
-{
-    s.IdleTimeout = TimeSpan.FromMinutes(10);
+builder.Services.AddSession(s => { s.IdleTimeout = TimeSpan.FromMinutes(10); });
 
+if (builder.Configuration.GetValue<bool>("UseLDAPLogin"))
+{
+    // Authentication service
+    builder.Services.Configure<LdapConfig>(builder.Configuration.GetSection("ldap"));
+    builder.Services.AddScoped<IAuthenticationService, LdapAuthenticationService>();
+
+    builder.Services.AddMvc(config =>
+{
+    // Requiring authenticated users on the site globally
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
 });
+
+    // Authentication
+    var cookiesConfig = builder.Configuration.GetSection("cookies").Get<CookiesConfig>();
+
+    builder.Services.AddAuthentication(
+        CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.Cookie.Name = cookiesConfig.CookieName;
+            options.LoginPath = cookiesConfig.LoginPath;
+            options.LogoutPath = cookiesConfig.LogoutPath;
+            options.AccessDeniedPath = cookiesConfig.AccessDeniedPath;
+            options.ReturnUrlParameter = cookiesConfig.ReturnUrlParameter;
+        });
+
+
+    //policies are added in the account controller, after a valid login
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("Require.Ldap.User", policy =>
+                          policy.RequireClaim("aspnetcore.ldap.user", "true")
+                                .AddAuthenticationSchemes(CookieAuthenticationDefaults.AuthenticationScheme)
+                              );
+    });
+}
 
 var app = builder.Build();
 
@@ -33,6 +76,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 
 
