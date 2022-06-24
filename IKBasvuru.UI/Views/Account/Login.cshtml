@@ -1,19 +1,17 @@
 ﻿@model IKBasvuru.COMMON.ViewModels.LoginViewModel
-
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>MilliRe İnsan Kaynakları Giriş Ekranı</title>
-
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -21,7 +19,12 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <style type="text/css">
+        .validation-summary-errors li {
+    list-style: none;
+    color: crimson;
+    }
+    </style>
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,16 +34,18 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-9 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-6">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <img class="col-lg-6 d-none d-lg-block mr-0" src="/img/millirelogo.png" alt="...">
-                            <div class="col-lg-6">
+                        <div class="row d-flex justify-content-center">
+                            
+                            <div class="col-12">
+                                <div class="text-center"> <img class="img-fluid" src="/img/millirelogo.png" alt="..."></div>
+                                <hr/>
                                 <div class="p-5">
-                                    <div class="text-center">
+                                    <div class="text-center">                                   
                                         <h1 class="h4 text-gray-900 mb-4">Hoşgeldiniz!</h1>
                                     </div>
 
@@ -61,10 +66,11 @@
                                         <input type="submit" value="Giriş Yap" class="btn btn-primary btn-user btn-block" />
 
 
-                                        <hr>
+                                        <hr/>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" asp-controller="Account" asp-action="Login">Forgot Password?</a>
+                                        @Html.ValidationSummary()
+                                        @*<a class="small" asp-controller="Account" asp-action="Login">Forgot Password?</a>*@
                                     </div>
                                 </div>
                             </div>

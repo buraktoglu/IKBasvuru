@@ -10,16 +10,16 @@ namespace IKBasvuru.COMMON.ViewModels
     public class LoginViewModel
     {
 
-        [Required(ErrorMessage = "User name is required")]
+        [Required(ErrorMessage = "Kullanıcı adı boş geçilemez.")]
         [Display(Name = "User Name")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
+        [Required(ErrorMessage = "Şifre boş geçilemez.")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Beni Hatırla?")]
         public bool RememberMe { get; set; }
 
         public string ReturnUrl { get; set; }
