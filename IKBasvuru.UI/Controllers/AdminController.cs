@@ -3,9 +3,9 @@ using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IKBasvuru.UI.Areas.Admin.Controllers
+namespace IKBasvuru.UI.Controllers
 {
-    [Area("Admin")]
+
     public class AdminController : Controller
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
@@ -30,7 +30,7 @@ namespace IKBasvuru.UI.Areas.Admin.Controllers
         {
             JobApplication jobApplication = _jobApplicationRepository.Get(x => x.Id == Id);
 
-            return View( new ApplicationListVM()
+            return View(new ApplicationListVM()
             {
                 Id = jobApplication.Id,
                 Name = jobApplication.Name,
