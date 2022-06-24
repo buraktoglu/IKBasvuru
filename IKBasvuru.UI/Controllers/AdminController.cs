@@ -1,4 +1,5 @@
-﻿using IKBasvuru.DATA.Domain;
+﻿using IKBasvuru.CORE.Validations;
+using IKBasvuru.DATA.Domain;
 using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,7 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
+                new JobPositionValidator().Validate(jobPosition);
                 _jobPositionRepository.Add(jobPosition);
             }
             catch (Exception)
@@ -104,6 +106,7 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
+                new JobPositionValidator().Validate(jobPosition);
                 _jobPositionRepository.Update(jobPosition);
             }
             catch (Exception)

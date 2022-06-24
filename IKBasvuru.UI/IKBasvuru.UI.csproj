@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IKBasvuru.CORE\IKBasvuru.CORE.csproj" />
     <ProjectReference Include="..\IKBasvuru.DATA\IKBasvuru.DATA.csproj" />
   </ItemGroup>
 
