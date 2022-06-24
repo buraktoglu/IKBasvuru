@@ -14,7 +14,7 @@ namespace IKBasvuru.COMMON.Services
         private const string MemberOfAttribute = "memberOf";
         private const string DisplayNameAttribute = "displayName";
         private const string SAMAccountNameAttribute = "sAMAccountName";
-        private const string MailAttribute = "mail";
+        private const string MailAttribute = "userPrincipalName"; //Milli AD uzerinde mail alani olmadigi icin userPrincipalName kullanildi.
 
         private readonly LdapConfig _config;
         private readonly LdapConnection _connection;
@@ -27,8 +27,9 @@ namespace IKBasvuru.COMMON.Services
 
         public IAppUser Login(string username, string password)
         {
-            _connection.Connect(_config.Url, LdapConnection.DEFAULT_PORT);
-            _connection.Bind(_config.Username, _config.Password);
+            _connection.Connect(_config.Url, _config.Port);
+            _connection.Bind($"{_config.Domain}\\{username}", password);
+            //_connection.Bind(_config.Username, _config.Password);
 
             var searchFilter = String.Format(_config.SearchFilter, username);
             var result = _connection.Search(
