@@ -30,6 +30,20 @@ namespace IKBasvuru.UI.Controllers
         }
 
         [HttpGet]
+        public IActionResult Details(int Id)
+        {
+            JobApplication jobApplication = _jobApplicationRepository.Get(e => e.Id == Id);
+
+            return View(jobApplication);
+        }
+
+        [HttpPost]
+        public IActionResult Details(JobApplication jobApplication)
+        {
+            return RedirectToAction("ListApplications", "Admin");
+        }
+
+        [HttpGet]
         public IActionResult Delete(int Id)
         {
             JobApplication jobApplication = _jobApplicationRepository.Get(x => x.Id == Id);

@@ -27,6 +27,8 @@ namespace IKBasvuru.DATA.Repositories.Concrete
                     Id = item.Id,
                     Name = item.Name,
                     Surname = item.Surname,
+                    ApplicationStatus = item.ApplicationStatus,
+                    Note = item.Note,
                     FileName = item.FileName,
                     FilePath = item.FilePath
                 };

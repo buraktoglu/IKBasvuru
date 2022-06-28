@@ -35,11 +35,11 @@ namespace IKBasvuru.DATA.ViewModels
         public bool KVKKCheck { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]
-        [MinLength(2, ErrorMessage = "En az 2 karakter girilmesi zorunludur.")]
+        [EmailAddress(ErrorMessage = "Geçerli bir email adresi giriniz.")]
         public string? Email { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]
-        [MinLength(2, ErrorMessage = "En az 2 karakter girilmesi zorunludur.")]
+        [RegularExpression(@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}", ErrorMessage = "10 haneli telefon numaranızı giriniz.")]
         public string? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]

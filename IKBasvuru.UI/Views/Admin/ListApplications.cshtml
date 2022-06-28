@@ -23,6 +23,12 @@
                         <th>
                             Dosya Adı
                         </th>
+                        <th>
+                            Başvuru Durumu
+                        </th>
+                        <th>
+                            Yorumlar
+                        </th>
                         <th class="col-md-2"></th>
                     </tr>
                 </thead>
@@ -30,22 +36,29 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        @Html.HiddenFor(modelItem => item.Id)
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Surname)
-                        </td>
-                        <td>
-                            <a href="@item.FilePath"> @Html.DisplayFor(modelItem => item.FileName)</a>
-                        </td>
-                        <td class="d-flex justify-content-between">
-                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
-                        </td>
-                        
-                    </tr>
+                        <tr>
+                            @Html.HiddenFor(modelItem => item.Id)
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                <a href="@item.FilePath"> @Html.DisplayFor(modelItem => item.FileName)</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApplicationStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </td>
+                            <td class="d-flex justify-content-between">
+                                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
+                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Detayları Görüntüle</a>
+                            </td>
+
+                        </tr>
                     }
                 </tbody>
 
