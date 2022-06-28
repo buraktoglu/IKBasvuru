@@ -30,6 +30,8 @@ namespace IKBasvuru.DATA.ViewModels
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
         public MaritalStatus? MaritalStatus { get; set; }
 
+        public bool MilitaryStatus { get; set; }
+
         public bool KVKKCheck { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]

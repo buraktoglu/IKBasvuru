@@ -17,7 +17,7 @@
 
             <div class="form-group">
                 <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
-                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Description"))" class="form-control">
+                <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Name"))" class="form-control">
                     <option hidden disable selected>İş Pozisyonu Seçiniz</option>
                 </select>
                 <span asp-validation-for="JobPositionId" class="text-danger"></span>
@@ -37,10 +37,20 @@
 
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Cinsiyet</label>
-                <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control">
+                <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" id="genderSelection">
                     <option hidden disable selected="selected">Cinsiyet Seçiniz</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row col-md-12" id="militaryStatus" style="display: none">
+
+                <label asp-for="MilitaryStatus" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
+                <label class="switch">
+                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox" >
+                    <slider class="slider round">
+                    </slider>
+                </label>
             </div>
 
             <div class="form-group">
@@ -52,7 +62,7 @@
             </div>
 
             <div class="row col-md-6">
-                <label for="exampleFormControlFile1">Özgeçmişinizi yükleyiniz. (PDF)</label>
+                <label for="exampleFormControlFile1">Özgeçmişinizi yükleyiniz.</label>
                 <input asp-for="FormFile" type="file" name="FormFile" class="form-control-file" id="exampleFormControlFile1">
             </div>
 
@@ -110,66 +120,96 @@
     </div>
 </form>
 
-<style>
+@section Scripts {
 
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 24px;
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-        .switch input {
-            display: none;
+    <script>
+
+        $("#genderSelection").change(function() {
+
+            selectElement = document.querySelector('#genderSelection');
+            output = selectElement.options[selectElement.selectedIndex].value;
+
+            if (output == "1") {
+
+                $("#militaryStatus").show();
+                
+            }
+            else {
+
+                $("#militaryStatus").hide();
+            }
+        });
+
+    </script>
+
+}
+
+
+
+    <style>
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
         }
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #808080;
-        transition: .4s;
-    }
+            .switch input {
+                display: none;
+            }
 
-        .slider:before {
+        .slider {
             position: absolute;
-            content: "";
-            height: 14px;
-            width: 14px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #808080;
             transition: .4s;
         }
 
-    /* include generated hidden field here */
-    input[type="checkbox"]:checked + input[type="hidden"] + .slider,
-    input[type="checkbox"]:checked + .slider {
-        background-color: #2f6dcf;
-    }
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 14px;
+                width: 14px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                transition: .4s;
+            }
 
-    /* include generated hidden field here */
-    input[type="checkbox"]:focus + input[type="hidden"] + .slider,
-    input[type="checkbox"]:focus + .slider {
-        box-shadow: 0 0 1px #52BE80;
-    }
-
-    /* include generated hidden field here */
-    input[type="checkbox"]:checked + input[type="hidden"] + .slider:before,
-    input[type="checkbox"]:checked + .slider:before {
-        transform: translateX(26px);
-    }
-
-    /* Rounded sliders */
-    .slider.round {
-        border-radius: 40px;
-    }
-
-        .slider.round:before {
-            border-radius: 50%;
+        /* include generated hidden field here */
+        input[type="checkbox"]:checked + input[type="hidden"] + .slider,
+        input[type="checkbox"]:checked + .slider {
+            background-color: #2f6dcf;
         }
 
-</style>
+        /* include generated hidden field here */
+        input[type="checkbox"]:focus + input[type="hidden"] + .slider,
+        input[type="checkbox"]:focus + .slider {
+            box-shadow: 0 0 1px #52BE80;
+        }
+
+        /* include generated hidden field here */
+        input[type="checkbox"]:checked + input[type="hidden"] + .slider:before,
+        input[type="checkbox"]:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 40px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+    </style>

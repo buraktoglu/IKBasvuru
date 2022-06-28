@@ -28,4 +28,18 @@ namespace IKBasvuru.COMMON.Enums
         [Display(Name = "Boşanmış")]
         Divorced = 3
     }
+
+    public enum ApplicationStatus
+    {
+        [Display(Name = "Reddedildi")]
+        Declined = 0,
+        [Display(Name = "Onaylandı")]
+        Approved = 1,
+        [Display(Name = "Başvuru Alındı")]
+        Accepted = 2,
+        [Display(Name = "Değerlendirildi")]
+        Evaluated = 3,
+        [Display(Name = "Değerlendirme Sürecinde")]
+        OnEvaluation = 4
+    }
 }

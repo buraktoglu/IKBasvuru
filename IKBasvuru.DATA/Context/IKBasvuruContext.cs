@@ -41,29 +41,35 @@ namespace IKBasvuru.DATA.Context
             modelBuilder.Entity<JobApplication>(entity =>
             {
                 entity.Property(e => e.Id);
-                
+
                 entity.Property(e => e.Name).IsRequired();
-                
+ 
                 entity.Property(e => e.Surname).IsRequired();
-                
+
                 entity.Property(e => e.Gender).IsRequired();
-                
+
                 entity.Property(e => e.BirthDate).IsRequired().HasColumnType("datetime");
-                
+
                 entity.Property(e => e.MaritalStatus).IsRequired();
-                
+
+                entity.Property(e => e.ApplicationStatus);
+
+                entity.Property(e => e.MilitaryService).IsRequired();
+
+                entity.Property(e => e.Note);
+
                 entity.Property(e => e.KVKKCheck).IsRequired();
-                
+
                 entity.Property(e => e.PhoneNumber).IsRequired();
 
                 entity.Property(e => e.Email).IsRequired();
                 
                 entity.Property(e => e.Address).IsRequired();
-                
+
                 entity.Property(e => e.FileName).IsRequired();
 
                 entity.Property(e => e.FilePath).IsRequired();
-                
+
                 entity.HasIndex(e => e.JobPositionId, "IX_JobApplication_JobPositionId");
 
                 entity.Property(e => e.IsActive).IsRequired();
@@ -83,9 +89,9 @@ namespace IKBasvuru.DATA.Context
             modelBuilder.Entity<JobPosition>(entity =>
             {
                 entity.Property(e => e.Id);
-                
+
                 entity.Property(e => e.Name).IsRequired();
-                
+
                 entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.IsActive).IsRequired();

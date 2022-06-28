@@ -62,6 +62,7 @@ namespace IKBasvuru.UI.Controllers
                 BirthDate = applicationVM.BirthDate,
                 MaritalStatus = applicationVM.MaritalStatus,
                 KVKKCheck = applicationVM.KVKKCheck,
+                MilitaryService = applicationVM.MilitaryStatus,
                 Email = applicationVM.Email,
                 PhoneNumber = applicationVM.PhoneNumber,
                 Address = applicationVM.Address,
