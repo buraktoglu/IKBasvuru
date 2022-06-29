@@ -45,6 +45,7 @@ namespace IKBasvuru.DATA.ViewModels
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]
         [MinLength(2, ErrorMessage = "En az 2 karakter girilmesi zorunludur.")]
         public string? Address { get; set; }
+
         public int? JobPositionId { get; set; }
         public string? FilePath { get; set; }
         public IFormFile? FormFile { get; set; }

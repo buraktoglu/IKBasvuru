@@ -5,3 +5,139 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<form asp-controller="Admin" asp-action="Details" method="post" enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @*            <div class="form-group">
+            <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
+            <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Name"))" class="form-control">
+            <option hidden disable selected>İş Pozisyonu Seçiniz</option>
+            </select>
+            <span asp-validation-for="JobPositionId" class="text-danger"></span>
+            </div>*@
+
+            <div class="form-group mt-md-0">
+                <label class="control-label">İsim: </label>
+                @Html.DisplayFor(Model => Model.Name)
+            </div>
+
+            <div class="form-group mt-md-0">
+                <label class="control-label">Soyisim: </label>
+                @Html.DisplayFor(Model => Model.Surname)
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Cinsiyet : </label>
+                @Html.DisplayFor(Model => Model.Gender)
+            </div>
+
+            <div class="form-group row col-md-12" id="militaryStatus" style="display: none">
+
+                <label asp-for="MilitaryService" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
+                <label class="switch">
+                    <input class="form-check-input mr-4" asp-for="MilitaryService" type="checkbox">
+                    <slider class="slider round">
+                    </slider>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Medeni Hal : </label>
+                @Html.DisplayFor(Model => Model.MaritalStatus)
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ApplicationStatus" class="control-label">Başvuru Durumu</label>
+                <select asp-for="ApplicationStatus" asp-items="@Html.GetEnumSelectList<ApplicationStatus>()" class="form-control">
+                    <option hidden disable selected="selected">Başvuruyu Değerlendiriniz.</option>
+                </select>
+                <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div class="form-group mt-md-0">
+                <label class="control-label">Email: </label>
+                @Html.DisplayFor(Model => Model.Email)
+            </div>
+
+            <div class="form-group mt-md-0">
+                <label class="control-label">Telefon Numarası: </label>
+                @Html.DisplayFor(Model => Model.PhoneNumber)
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Doğum Tarihi: </label>
+                @Html.DisplayFor(Model => Model.BirthDate)
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Adres : </label>
+                @Html.DisplayFor(Model => Model.Address)
+            </div>
+
+            <div class="form-group row col-md-12">
+
+                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
+                <label class="switch">
+                    <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
+                    <slider class="slider round">
+                    </slider>
+                </label>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label">Yorumlar</label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row mt-md-5">
+
+                <div class="col-md-12">
+                    <input type="submit" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+        $("#genderSelection").change(function() {
+
+            selectElement = document.querySelector('#genderSelection');
+            output = selectElement.options[selectElement.selectedIndex].value;
+
+            if (output == "1") {
+
+                $("#militaryStatus").show();
+                
+            }
+            else {
+
+                $("#militaryStatus").hide();
+            }
+        });
+
+    </script>
+
+}

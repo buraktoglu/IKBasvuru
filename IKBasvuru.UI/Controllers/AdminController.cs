@@ -40,6 +40,10 @@ namespace IKBasvuru.UI.Controllers
         [HttpPost]
         public IActionResult Details(JobApplication jobApplication)
         {
+
+            //try - catch - validate
+            _jobApplicationRepository.Update(jobApplication);
+
             return RedirectToAction("ListApplications", "Admin");
         }
 

@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
                 <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Name"))" class="form-control">
-                    <option hidden disable selected>İş Pozisyonu Seçiniz</option>
+                    <option value="" hidden disable selected>İş Pozisyonu Seçiniz</option>
                 </select>
                 <span asp-validation-for="JobPositionId" class="text-danger"></span>
             </div>
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Cinsiyet</label>
                 <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" id="genderSelection">
-                    <option hidden disable selected="selected">Cinsiyet Seçiniz</option>
+                    <option value="" hidden disable selected="selected">Cinsiyet Seçiniz</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
                 <select asp-for="MaritalStatus" asp-items="@Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
-                    <option hidden disable selected="selected">Medeni Hal Seçiniz</option>
+                    <option value="" hidden disable selected="selected">Medeni Hal Seçiniz</option>
                 </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
