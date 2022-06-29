@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label asp-for="JobPositionId" class="control-label">Başvurulacak Pozisyon</label>
                 <select asp-for="JobPositionId" asp-items="@(new SelectList(Model.JobPositions, "Id","Name"))" class="form-control">
-                    <option hidden disable selected>İş Pozisyonu Seçiniz</option>
+                    <option value="" hidden disable selected>İş Pozisyonu Seçiniz</option>
                 </select>
                 <span asp-validation-for="JobPositionId" class="text-danger"></span>
             </div>
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label asp-for="Gender" class="control-label">Cinsiyet</label>
                 <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" id="genderSelection">
-                    <option hidden disable selected="selected">Cinsiyet Seçiniz</option>
+                    <option value="" hidden disable selected="selected">Cinsiyet Seçiniz</option>
                 </select>
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
                 <select asp-for="MaritalStatus" asp-items="@Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
-                    <option hidden disable selected="selected">Medeni Hal Seçiniz</option>
+                    <option value="" hidden disable selected="selected">Medeni Hal Seçiniz</option>
                 </select>
                 <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
@@ -84,7 +84,7 @@
 
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label">Doğum Tarihi</label>
-                <input type="date" asp-for="BirthDate" class="form-control" value="2000-01-01" />
+                <input type="date" asp-for="BirthDate" class="form-control" value="" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
 
@@ -96,12 +96,13 @@
 
             <div class="form-group row col-md-12">
 
-                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
+                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>   
                 <label class="switch">
-                    <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
+                 <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
+                <span asp-validation-for="KVKKCheck" class="text-danger"></span>
             </div>
 
             <div class="form-group row mt-md-5">
@@ -121,7 +122,7 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-
+ 
     <script>
 
         $("#genderSelection").change(function() {
