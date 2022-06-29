@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace IKBasvuru.DATA.ViewModels
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
         public Gender? Gender { get; set; }
 
+        [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]
         public DateTime BirthDate { get; set; }
 
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
@@ -32,6 +34,8 @@ namespace IKBasvuru.DATA.ViewModels
 
         public bool MilitaryStatus { get; set; }
 
+        [Required]
+        [Range(typeof(bool), "true", "true", ErrorMessage = "Devam edebilmek için Kişisel veri aydınlatma metnini onaylamalısınız.")]
         public bool KVKKCheck { get; set; }
 
         [Required(ErrorMessage = "Bu alanın doldurulması zorunludur.")]
@@ -46,6 +50,7 @@ namespace IKBasvuru.DATA.ViewModels
         [MinLength(2, ErrorMessage = "En az 2 karakter girilmesi zorunludur.")]
         public string? Address { get; set; }
 
+        [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
         public int? JobPositionId { get; set; }
         public string? FilePath { get; set; }
         public IFormFile? FormFile { get; set; }
