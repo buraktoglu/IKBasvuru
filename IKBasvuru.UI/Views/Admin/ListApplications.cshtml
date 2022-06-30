@@ -32,7 +32,9 @@
                         <th>
                             Yorumlar
                         </th>
-                        <th class="col-md-2"></th>
+                        <th class="col-md-2">
+                            İşlemler
+                        </th>
                     </tr>
                 </thead>
 
@@ -59,9 +61,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Note)
                             </td>
-                            <td class="d-flex justify-content-between">
-                                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
-                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary col-md-5">Detayları Görüntüle</a>
+                            <td class="d-flex justify-content-center">
+                                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-fluid m-1">Sil</a>
+                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-fluid m-1">Detayları Görüntüle</a>
                             </td>
 
                         </tr>
