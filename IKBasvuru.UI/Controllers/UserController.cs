@@ -46,7 +46,7 @@ namespace IKBasvuru.UI.Controllers
                 // path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\CVs\\", randomName);
 
                 string webRootPath = _webHostEnvironment.WebRootPath;
-                path = Path.Combine(webRootPath, "CSS", randomName);
+                path = Path.Combine(webRootPath, "CVs", randomName);
             }
             else
             {
