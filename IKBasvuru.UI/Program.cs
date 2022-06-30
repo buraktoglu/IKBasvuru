@@ -20,6 +20,8 @@ builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 
 builder.Services.AddSession(s => { s.IdleTimeout = TimeSpan.FromMinutes(10); });
 
+builder.Services.AddControllersWithViews();
+
 if (builder.Configuration.GetValue<bool>("UseLDAPLogin"))
 {
     // Authentication service
