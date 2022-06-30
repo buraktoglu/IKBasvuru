@@ -60,7 +60,7 @@ namespace IKBasvuru.DATA.Repositories.Concrete
                 FileName = jobApplication.FileName,
                 FilePath = jobApplication.FilePath,
                 Gender = jobApplication.Gender,
-                JobPosition = jobs[jobApplication.Id].Name,
+                JobPosition = jobs[jobApplication.JobPositionId].Name,
                 MaritalStatus = jobApplication.MaritalStatus,
                 MilitaryStatus = jobApplication.MilitaryService,
                 Name = jobApplication.Name,
