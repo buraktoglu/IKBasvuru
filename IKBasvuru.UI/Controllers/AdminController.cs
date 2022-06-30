@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IKBasvuru.UI.Controllers
 {
-
+    [Authorize(Policy = "Require.Ldap.User", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
     public class AdminController : Controller
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
@@ -20,7 +20,6 @@ namespace IKBasvuru.UI.Controllers
             _jobPositionRepository = jobPositionRepository;
         }
 
-       // [Authorize(Policy = "Require.Ldap.User", AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
         [HttpGet]
         public IActionResult ListApplications()
         {
