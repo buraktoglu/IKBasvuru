@@ -1,8 +1,10 @@
-﻿using IKBasvuru.COMMON.ViewModels;
+﻿using IKBasvuru.COMMON.Models;
+using IKBasvuru.COMMON.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Security.Claims;
 
 namespace IKBasvuru.UI.Controllers
@@ -10,10 +12,14 @@ namespace IKBasvuru.UI.Controllers
     public class AccountController : Controller
     {
         private readonly COMMON.Services.IAuthenticationService _authService;
+        private readonly LdapConfig _config;
 
-        public AccountController(COMMON.Services.IAuthenticationService authService)
+
+        public AccountController(COMMON.Services.IAuthenticationService authService, IOptions<LdapConfig> configAccessor
+)
         {
             _authService = authService;
+            _config = configAccessor.Value;
         }
 
         [HttpGet]
@@ -51,8 +57,9 @@ namespace IKBasvuru.UI.Controllers
                         }
 
                         //we can add custom claims based on the AD user's groups
+                        string authorizationRole = _config.AuthorizationRole;
                         var claimsIdentity = new ClaimsIdentity(userClaims, _authService.GetType().Name);
-                        if (Array.Exists(user.Roles, s => s.Contains("aspnetcore.ldap")))
+                        if (Array.Exists(user.Roles, s => s.Contains(authorizationRole)))
                         {
                             //if in the AD the user belongs to the aspnetcore.ldap group, we add a claim
                             claimsIdentity.AddClaim(new Claim("aspnetcore.ldap.user", "true"));

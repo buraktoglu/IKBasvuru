@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-8">
+
+        <h4 class="text-success">Bu kısıtlı bir bölümdür</h4>
+        <h5 class="text-muted">Lütfen giriş için butona tıklayın </h5>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.ActionLink("Account", "Login", "Account", null, new { @class = "btn btn-block btn-success btn-block" })
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+

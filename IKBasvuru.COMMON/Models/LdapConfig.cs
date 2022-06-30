@@ -16,5 +16,7 @@ namespace IKBasvuru.COMMON.Models
         public string Password { get; set; }
         public string SearchBase { get; set; }
         public string SearchFilter { get; set; }
+        public string AuthorizationRole { get; set; }
+
     }
 }
