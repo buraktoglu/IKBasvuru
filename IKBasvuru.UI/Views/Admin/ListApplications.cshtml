@@ -21,6 +21,9 @@
                             Soyisim
                         </th>
                         <th>
+                            Başvurulan Pozisyon
+                        </th>
+                        <th>
                             Dosya Adı
                         </th>
                         <th>
@@ -45,6 +48,9 @@
                                 @Html.DisplayFor(modelItem => item.Surname)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.JobPosition)
+                            </td>
+                            <td>
                                 <a href="@item.FilePath"> @Html.DisplayFor(modelItem => item.FileName)</a>
                             </td>
                             <td>
@@ -55,7 +61,7 @@
                             </td>
                             <td class="d-flex justify-content-between">
                                 <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
-                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Detayları Görüntüle</a>
+                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary col-md-5">Detayları Görüntüle</a>
                             </td>
 
                         </tr>

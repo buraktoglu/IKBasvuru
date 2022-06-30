@@ -1,4 +1,5 @@
 ﻿using IKBasvuru.COMMON.Enums;
+using IKBasvuru.DATA.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace IKBasvuru.DATA.ViewModels
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? Note { get; set; }
+        public string? JobPosition { get; set; }
         public ApplicationStatus? ApplicationStatus { get; set; }
         public string? FileName { get; set; }
         public string? FilePath { get; set; }

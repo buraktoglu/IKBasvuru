@@ -11,5 +11,7 @@ namespace IKBasvuru.DATA.Repositories.Abstract
     public interface IJobApplicationRepository : IRepository<JobApplication>
     {
         public List<ApplicationListVM> GetListOfApplications();
+
+        public ApplicationDetailsVM GetDetails(int Id);
     }
 }

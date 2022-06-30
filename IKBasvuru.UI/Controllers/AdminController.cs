@@ -34,15 +34,29 @@ namespace IKBasvuru.UI.Controllers
         {
             JobApplication jobApplication = _jobApplicationRepository.Get(e => e.Id == Id);
 
-            return View(jobApplication);
+            ApplicationDetailsVM detailsVM = _jobApplicationRepository.GetDetails(Id);
+
+            return View(detailsVM);
         }
 
         [HttpPost]
-        public IActionResult Details(JobApplication jobApplication)
+        public IActionResult Details(ApplicationDetailsVM detailsVM)
         {
+            JobApplication jobApplication = _jobApplicationRepository.Get(e => e.Id == detailsVM.Id);
+            
+            jobApplication.Note = detailsVM.Note;
+            jobApplication.ApplicationStatus = detailsVM.ApplicationStatus;
 
-            //try - catch - validate
-            _jobApplicationRepository.Update(jobApplication);
+            try
+            {
+                _jobApplicationRepository.Update(jobApplication);
+                //todo : modifiedby ve modifieddate güncellenmeli - accountcontroller implemente edildikten sonra
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
 
             return RedirectToAction("ListApplications", "Admin");
         }

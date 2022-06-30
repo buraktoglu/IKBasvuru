@@ -51,12 +51,10 @@ namespace IKBasvuru.DATA.ViewModels
         public string? Address { get; set; }
 
         [Required(ErrorMessage = "Bu alanın seçilmesi zorunludur.")]
-        public int? JobPositionId { get; set; }
+        public int JobPositionId { get; set; }
         public string? FilePath { get; set; }
         public IFormFile? FormFile { get; set; }
 
         public List<JobPosition>? JobPositions { get; set; }
-        public List<Gender>? Genders { get; set; }
-        public List<MaritalStatus>? MaritalStatuses { get; set; }
     }
 }
