@@ -108,7 +108,7 @@
             <div class="form-group row mt-md-5">
 
                 <div class="col-md-12">
-                    <input type="submit" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
+                    <input type="submit" disabled id="sendApplication" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
                 </div>
 
             </div>
@@ -123,27 +123,31 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <script>
+    <script type="text/javascript">
+        $(function() {
+            $('#KVKKCheck').change(function() {
+                if ($('#KVKKCheck').prop('checked') === false) {
+                    $("#sendApplication").prop("disabled", true);
+                } else
+                    $("#sendApplication").prop("disabled", false);
+            });
 
-        $("#genderSelection").change(function() {
+            $("#genderSelection").change(function() {
 
-            selectElement = document.querySelector('#genderSelection');
-            output = selectElement.options[selectElement.selectedIndex].value;
+                selectElement = document.querySelector('#genderSelection');
+                output = selectElement.options[selectElement.selectedIndex].value;
 
-            if (output == "1") {
+                if (output == "1") {
 
-                $("#militaryStatus").show();
+                    $("#militaryStatus").show();
 
-            }
-            else {
+                }
+                else {
 
-                $("#militaryStatus").hide();
-            }
+                    $("#militaryStatus").hide();
+                }
+            });
         });
-            
-        }
-
-
     </script>
 
 }
