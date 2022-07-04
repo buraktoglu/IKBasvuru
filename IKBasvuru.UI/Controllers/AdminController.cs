@@ -112,8 +112,6 @@ namespace IKBasvuru.UI.Controllers
                 throw;
             }
 
-            //todo : modifiedby ve modifieddate güncellenmeli - accountcontroller implemente edildikten sonra
-
             return RedirectToAction("ListApplications", "Admin");
         }
 
@@ -134,8 +132,6 @@ namespace IKBasvuru.UI.Controllers
         [HttpPost]
         public IActionResult AddPosition(JobPosition jobPosition)
         {
-            //todo : jobPosition.ModifiedBy after account controller
-
             try
             {
                 var validate = new JobPositionValidator().Validate(jobPosition);
@@ -177,8 +173,6 @@ namespace IKBasvuru.UI.Controllers
         [HttpPost]
         public IActionResult UpdatePosition(JobPosition jobPosition)
         {
-            //todo : jobPosition.ModifiedBy after account controller
-
             try
             {
                 var validate = new JobPositionValidator().Validate(jobPosition);
