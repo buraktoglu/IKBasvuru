@@ -45,14 +45,26 @@ namespace IKBasvuru.UI.Controllers
             
             jobApplication.Note = detailsVM.Note;
             jobApplication.ApplicationStatus = detailsVM.ApplicationStatus;
+            jobApplication.ModifiedBy = User.Identity.Name;
+            jobApplication.ModifiedDate = DateTime.Now;
 
             try
             {
-                _jobApplicationRepository.Update(jobApplication);
-                //todo : modifiedby ve modifieddate güncellenmeli - accountcontroller implemente edildikten sonra
+                int affectedRow = _jobApplicationRepository.Update(jobApplication);
+
+                if (affectedRow == 1)
+                {
+                    //işlem başarılı 
+                }
+                else
+                {
+                    //işlem başarısız
+                }
             }
             catch (Exception)
             {
+                //işlem başarısız
+
                 throw;
             }
 
@@ -80,10 +92,23 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
-                _jobApplicationRepository.Delete(jobApplication);
+                jobApplication.ModifiedBy = User.Identity.Name;
+                jobApplication.ModifiedDate = DateTime.Now;
+                int affectedRow = _jobApplicationRepository.Delete(jobApplication);
+
+                if (affectedRow == 1)
+                {
+                    //işlem başarılı 
+                }
+                else
+                {
+                    //işlem başarısız
+                }
             }
             catch (Exception)
             {
+                //işlem başarısız
+
                 throw;
             }
 
@@ -117,12 +142,23 @@ namespace IKBasvuru.UI.Controllers
 
                 if (validate.IsValid)
                 {
-                    _jobPositionRepository.Add(jobPosition);
+                    jobPosition.ModifiedBy = User.Identity.Name;
+                    jobPosition.ModifiedDate = DateTime.Now;
+                    int affectedRow = _jobPositionRepository.Add(jobPosition);
 
+                    if (affectedRow == 1)
+                    {
+                        //işlem başarılı 
+                    }
+                    else
+                    {
+                        //işlem başarısız
+                    }
                 }
             }
             catch (Exception)
             {
+                //işlem başarısız
 
                 throw;
             }
@@ -149,12 +185,23 @@ namespace IKBasvuru.UI.Controllers
 
                 if (validate.IsValid)
                 {
-                    _jobPositionRepository.Update(jobPosition);
+                    jobPosition.ModifiedBy = User.Identity.Name;
+                    jobPosition.ModifiedDate = DateTime.Now;
+                    int affectedRow = _jobPositionRepository.Update(jobPosition);
 
+                    if (affectedRow == 1)
+                    {
+                        //işlem başarılı 
+                    }
+                    else
+                    {
+                        //işlem başarısız
+                    }
                 }
             }
             catch (Exception)
             {
+                //işlem başarısız
 
                 throw;
             }
@@ -176,10 +223,23 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
-                _jobPositionRepository.Delete(jobPositionDeleted);
+                jobPosition.ModifiedBy = User.Identity.Name;
+                jobPosition.ModifiedDate = DateTime.Now;
+                int affectedRow = _jobPositionRepository.Delete(jobPositionDeleted);
+
+                if (affectedRow == 1)
+                {
+                    //işlem başarılı 
+                }
+                else
+                {
+                    //işlem başarısız
+                }
             }
             catch (Exception)
             {
+                //işlem başarısız
+
                 throw;
             }
 

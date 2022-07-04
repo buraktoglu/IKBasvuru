@@ -65,23 +65,27 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public void Add(TEntity entity)
+        public int Add(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var added = context.Entry(entity);
                 added.State = EntityState.Added;
-                var value = context.SaveChanges();
+                int value = context.SaveChanges();
+
+                return value;
             }
         }
 
-        public async Task AddAsync(TEntity entity)
+        public async Task<int> AddAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var added = context.Entry(entity);
                 added.State = EntityState.Added;
-                var value = await context.SaveChangesAsync();
+                int value = await context.SaveChangesAsync();
+
+                return value;
             }
         }
 
@@ -96,63 +100,75 @@ namespace IKBasvuru.DATA.Repositories
             }
         }
 
-        public void Update(TEntity entity)
+        public int Update(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var updated = context.Entry(entity);
                 updated.State = EntityState.Modified;
-                var value = context.SaveChanges();
+                int value = context.SaveChanges();
+
+                return value;
             }
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public async Task<int> UpdateAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var updated = context.Entry(entity);
                 updated.State = EntityState.Modified;
-                var value = await context.SaveChangesAsync();
+                int value = await context.SaveChangesAsync();
+
+                return value;
             }
         }
 
-        public void HardDelete(TEntity entity)
+        public int HardDelete(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var deleted = context.Entry(entity);
                 deleted.State = EntityState.Deleted;
-                var value = context.SaveChanges();
+                int value = context.SaveChanges();
+
+                return value;
             }
         }
 
-        public async Task HardDeleteAsync(TEntity entity)
+        public async Task<int> HardDeleteAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 var deleted = context.Entry(entity);
                 deleted.State = EntityState.Deleted;
-                var value = await context.SaveChangesAsync();
+                int value = await context.SaveChangesAsync();
+
+                return value;
             }
         }
 
-        public void Delete(TEntity entity)
+        public int Delete(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 entity.GetType().GetProperty("IsActive").SetValue(entity, false);
                 Update(entity);
-                var value = context.SaveChanges();
+                int value = context.SaveChanges();
+
+                return value;
             }
         }
 
-        public async Task DeleteAsync(TEntity entity)
+        public async Task<int> DeleteAsync(TEntity entity)
         {
             using (var context = new Tcontext())
             {
                 entity.GetType().GetProperty("IsActive").SetValue(entity, false);
                 await UpdateAsync(entity);
-                var value = await context.SaveChangesAsync();
+                int value = await context.SaveChangesAsync();
+
+                return value;
             }
         }
     }

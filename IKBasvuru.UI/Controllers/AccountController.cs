@@ -15,8 +15,7 @@ namespace IKBasvuru.UI.Controllers
         private readonly LdapConfig _config;
 
 
-        public AccountController(COMMON.Services.IAuthenticationService authService, IOptions<LdapConfig> configAccessor
-)
+        public AccountController(COMMON.Services.IAuthenticationService authService, IOptions<LdapConfig> configAccessor)
         {
             _authService = authService;
             _config = configAccessor.Value;

@@ -18,15 +18,15 @@ namespace IKBasvuru.DATA.Repositories
         Task<T> GetLastAsync(Expression<Func<T, bool>> filter = null);
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
 
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        void HardDelete(T entity);
+        int Add(T entity);
+        int Update(T entity);
+        int Delete(T entity);
+        int HardDelete(T entity);
 
-        Task AddAsync(T entity);
+        Task<int> AddAsync(T entity);
         Task<T> MasterAddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task HardDeleteAsync(T entity);
+        Task<int> UpdateAsync(T entity);
+        Task<int> DeleteAsync(T entity);
+        Task<int> HardDeleteAsync(T entity);
     }
 }

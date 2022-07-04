@@ -50,8 +50,8 @@ namespace IKBasvuru.UI.Controllers
             }
             else
             {
+                //Dosya Hatası
                 return RedirectToAction("Application", "User");
-
             }
 
             JobApplication jobApplication = new JobApplication()
@@ -73,26 +73,48 @@ namespace IKBasvuru.UI.Controllers
 
             try
             {
-                var validate = new JobApplicationValidator().Validate(jobApplication);
+                extent = extent.ToLower();
 
-                if (validate.IsValid)
+                if (extent == ".pdf" || extent == ".docx" || extent == ".doc" || extent == ".odt" || extent == ".rtf")
                 {
-                    _jobApplicationRepository.Add(jobApplication);
+                    var validate = new JobApplicationValidator().Validate(jobApplication);
 
-                    using (var stream = new FileStream(path, FileMode.Create))
+                    if (validate.IsValid)
                     {
-                        applicationVM.FormFile.CopyTo(stream);
+                        int affectedRow = _jobApplicationRepository.Add(jobApplication);
+
+                        if (affectedRow == 1)
+                        {
+                            using (var stream = new FileStream(path, FileMode.Create))
+                            {
+                                applicationVM.FormFile.CopyTo(stream);
+                            }
+
+                            //İşlem Başarılı - Redirect
+                        }
+                        else
+                        {
+                            //İşlem Başarısız - Redirect
+                        }
+
+                    }
+                    else
+                    {
+                        //Format Hatası - Redirect
+
                     }
                 }
+                else
+                {
+                    //Extension Hatası - Redirect
+                }
+                
 
             }
             catch (Exception)
             {
                 throw;
             }
-            
-
-            //Log
 
             return RedirectToAction("Application", "User");
         }

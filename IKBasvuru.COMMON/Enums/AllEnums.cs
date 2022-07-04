@@ -14,7 +14,7 @@ namespace IKBasvuru.COMMON.Enums
         [Display(Name = "Erkek")]
         Male = 1,
         [Display(Name = "Belirtmek istemiyorum")]
-        Unknown = 2
+        Unknown = 2,
     }
 
     public enum MaritalStatus
@@ -26,7 +26,7 @@ namespace IKBasvuru.COMMON.Enums
         [Display(Name = "Dul")]
         Widow = 2,
         [Display(Name = "Boşanmış")]
-        Divorced = 3
+        Divorced = 3,
     }
 
     public enum ApplicationStatus
@@ -40,6 +40,20 @@ namespace IKBasvuru.COMMON.Enums
         [Display(Name = "Değerlendirildi")]
         Evaluated = 3,
         [Display(Name = "Değerlendirme Sürecinde")]
-        OnEvaluation = 4
+        OnEvaluation = 4,
+    }
+
+    public enum OutputMessages
+    {
+        [Display(Name = "İşleminiz Başarılı")]
+        Success = 0,
+        [Display(Name = "İşleminiz Başarısız")]
+        Failure = 1,
+        [Display(Name = "Dosya Hatası")]
+        FileError = 2,
+        [Display(Name = "Dosya Uzantısı Hatası")]
+        ExtensionError = 3,
+        [Display( Name = "Format Hatası")]
+        FormatError = 4,
     }
 }

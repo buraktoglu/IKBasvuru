@@ -47,7 +47,7 @@
 
                 <label asp-for="MilitaryStatus" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
                 <label class="switch">
-                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox" >
+                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
@@ -96,9 +96,9 @@
 
             <div class="form-group row col-md-12">
 
-                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>   
+                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
                 <label class="switch">
-                 <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
+                    <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
@@ -122,7 +122,7 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
- 
+
     <script>
 
         $("#genderSelection").change(function() {
@@ -133,13 +133,16 @@
             if (output == "1") {
 
                 $("#militaryStatus").show();
-                
+
             }
             else {
 
                 $("#militaryStatus").hide();
             }
         });
+            
+        }
+
 
     </script>
 
