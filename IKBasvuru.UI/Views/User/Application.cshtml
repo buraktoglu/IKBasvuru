@@ -47,7 +47,7 @@
 
                 <label asp-for="MilitaryStatus" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
                 <label class="switch">
-                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox" >
+                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
@@ -96,9 +96,9 @@
 
             <div class="form-group row col-md-12">
 
-                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>   
+                <label asp-for="KVKKCheck" class="control-label mr-5">KVKK Metnini okudum ve kabul ediyorum.</label>
                 <label class="switch">
-                 <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
+                    <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
@@ -108,7 +108,7 @@
             <div class="form-group row mt-md-5">
 
                 <div class="col-md-12">
-                    <input type="submit" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
+                    <input type="submit" disabled id="sendApplication" value="Özgeçmiş Yükle" class="btn btn-primary col-md-12" />
                 </div>
 
             </div>
@@ -122,25 +122,32 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
- 
-    <script>
 
-        $("#genderSelection").change(function() {
+    <script type="text/javascript">
+        $(function() {
+            $('#KVKKCheck').change(function() {
+                if ($('#KVKKCheck').prop('checked') === false) {
+                    $("#sendApplication").prop("disabled", true);
+                } else
+                    $("#sendApplication").prop("disabled", false);
+            });
 
-            selectElement = document.querySelector('#genderSelection');
-            output = selectElement.options[selectElement.selectedIndex].value;
+            $("#genderSelection").change(function() {
 
-            if (output == "1") {
+                selectElement = document.querySelector('#genderSelection');
+                output = selectElement.options[selectElement.selectedIndex].value;
 
-                $("#militaryStatus").show();
-                
-            }
-            else {
+                if (output == "1") {
 
-                $("#militaryStatus").hide();
-            }
+                    $("#militaryStatus").show();
+
+                }
+                else {
+
+                    $("#militaryStatus").hide();
+                }
+            });
         });
-
     </script>
 
 }
