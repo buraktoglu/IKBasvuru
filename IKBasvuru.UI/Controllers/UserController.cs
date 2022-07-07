@@ -34,7 +34,7 @@ namespace IKBasvuru.UI.Controllers
                 OutputMessage = outputMessage
             };
 
-            return View();
+            return View(applicationVM);
         }
 
         [HttpPost]
@@ -97,29 +97,22 @@ namespace IKBasvuru.UI.Controllers
                                 applicationVM.FormFile.CopyTo(stream);
                             }
 
-                            //İşlem Başarılı - Redirect
                             HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Success);
 
                         }
                         else
                         {
-                            //İşlem Başarısız - Redirect
                             HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Failure);
-
                         }
 
                     }
                     else
                     {
-                        //Format Hatası - Redirect
                         HttpContext.Session.MySessionSet("modalmessage", OutputMessages.FormatError);
-
-
                     }
                 }
                 else
                 {
-                    //Extension Hatası - Redirect
                     HttpContext.Session.MySessionSet("modalmessage", OutputMessages.ExtensionError);
 
                 }
