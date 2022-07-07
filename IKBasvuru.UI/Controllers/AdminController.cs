@@ -54,7 +54,7 @@ namespace IKBasvuru.UI.Controllers
 
                 if (affectedRow == 1)
                 {
-                    //işlem başarılı 
+                    //işlem başarılı
                 }
                 else
                 {
@@ -223,7 +223,7 @@ namespace IKBasvuru.UI.Controllers
 
                 if (affectedRow == 1)
                 {
-                    //işlem başarılı 
+                    //işlem başarılı
                 }
                 else
                 {

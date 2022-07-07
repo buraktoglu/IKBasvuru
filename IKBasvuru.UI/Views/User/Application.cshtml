@@ -10,6 +10,10 @@
 <hr />
 <form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
 
+    <div class="form-group mt-md-0">
+        <label asp-for="OutputMessage" class="control-label">@Model.OutputMessage</label>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
 
@@ -124,6 +128,7 @@
     }
 
     <script type="text/javascript">
+
         $(function() {
             $('#KVKKCheck').change(function() {
                 if ($('#KVKKCheck').prop('checked') === false) {

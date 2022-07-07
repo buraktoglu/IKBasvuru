@@ -5,6 +5,7 @@ using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using IKBasvuru.UI.Common;
 
 namespace IKBasvuru.UI.Controllers
 {
@@ -25,10 +26,20 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult Application()
         {
-            return View(new ApplicationVM()
+            OutputMessages outputMessage = HttpContext.Session.MySessionGet<OutputMessages>("modalmessage");
+
+            if (outputMessage == null)
+            {
+                outputMessage = OutputMessages.Welcome;
+            }
+
+            ApplicationVM applicationVM = new ApplicationVM()
             {
                 JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
-            });
+                OutputMessage = outputMessage
+            };
+
+            return View();
         }
 
         [HttpPost]
@@ -50,7 +61,8 @@ namespace IKBasvuru.UI.Controllers
             }
             else
             {
-                //Dosya Hatası
+                HttpContext.Session.MySessionSet("modalmessage", OutputMessages.FileError);
+
                 return RedirectToAction("Application", "User");
             }
 
@@ -75,7 +87,7 @@ namespace IKBasvuru.UI.Controllers
             {
                 extent = extent.ToLower();
 
-                if (extent == ".pdf" || extent == ".docx" || extent == ".doc" || extent == ".odt" || extent == ".rtf")
+                if (extent == ".pdf" || extent == ".doc" || extent == ".docx" || extent == ".xls" || extent == ".xlsx" || extent == ".odt" || extent == ".rtf")
                 {
                     var validate = new JobApplicationValidator().Validate(jobApplication);
 
@@ -91,28 +103,38 @@ namespace IKBasvuru.UI.Controllers
                             }
 
                             //İşlem Başarılı - Redirect
+                            HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Success);
+
                         }
                         else
                         {
                             //İşlem Başarısız - Redirect
+                            HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Failure);
+
                         }
 
                     }
                     else
                     {
                         //Format Hatası - Redirect
+                        HttpContext.Session.MySessionSet("modalmessage", OutputMessages.FormatError);
+
 
                     }
                 }
                 else
                 {
                     //Extension Hatası - Redirect
+                    HttpContext.Session.MySessionSet("modalmessage", OutputMessages.ExtensionError);
+
                 }
-                
+
 
             }
             catch (Exception)
             {
+                HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Failure);
+
                 throw;
             }
 

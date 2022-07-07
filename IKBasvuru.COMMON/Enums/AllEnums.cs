@@ -49,11 +49,13 @@ namespace IKBasvuru.COMMON.Enums
         Success = 0,
         [Display(Name = "İşleminiz Başarısız")]
         Failure = 1,
+        [Display(Name = "Hoşgeldiniz. Lütfen iş başvurunuzu tamamlayınız")]
+        Welcome = 3,
         [Display(Name = "Dosya Hatası")]
-        FileError = 2,
+        FileError = 3,
         [Display(Name = "Dosya Uzantısı Hatası")]
-        ExtensionError = 3,
+        ExtensionError = 4,
         [Display( Name = "Format Hatası")]
-        FormatError = 4,
+        FormatError = 5,
     }
 }
