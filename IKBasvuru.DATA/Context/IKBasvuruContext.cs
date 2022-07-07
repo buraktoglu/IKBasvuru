@@ -20,6 +20,7 @@ namespace IKBasvuru.DATA.Context
         {
         }
 
+        public virtual DbSet<Agreement> Agreement { get; set; }
         public virtual DbSet<JobApplication> JobApplication { get; set; }
         public virtual DbSet<JobPosition> JobPosition { get; set; }
 
@@ -43,7 +44,7 @@ namespace IKBasvuru.DATA.Context
                 entity.Property(e => e.Id);
 
                 entity.Property(e => e.Name).IsRequired();
- 
+
                 entity.Property(e => e.Surname).IsRequired();
 
                 entity.Property(e => e.Gender).IsRequired();
@@ -63,7 +64,7 @@ namespace IKBasvuru.DATA.Context
                 entity.Property(e => e.PhoneNumber).IsRequired();
 
                 entity.Property(e => e.Email).IsRequired();
-                
+
                 entity.Property(e => e.Address).IsRequired();
 
                 entity.Property(e => e.FileName).IsRequired();
@@ -103,8 +104,21 @@ namespace IKBasvuru.DATA.Context
                 entity.Property(e => e.ModifiedBy).IsRequired();
             });
 
+            modelBuilder.Entity<Agreement>(entity =>
+            {
+                entity.Property(e => e.Id);
+
+                entity.Property(e => e.Text).IsRequired();
+
+                entity.Property(e => e.IsActive).IsRequired();
+
+                entity.Property(e => e.CreatedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedBy).IsRequired();
+            });
+
         }
-
-
     }
 }

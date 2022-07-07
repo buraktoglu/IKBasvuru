@@ -15,11 +15,13 @@ namespace IKBasvuru.UI.Controllers
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
         private readonly IJobPositionRepository _jobPositionRepository;
+        private readonly IAgreementRepository _agreementRepository;
 
-        public AdminController(IJobApplicationRepository jobApplicationRepository, IJobPositionRepository jobPositionRepository)
+        public AdminController(IJobApplicationRepository jobApplicationRepository, IJobPositionRepository jobPositionRepository, IAgreementRepository agreementRepository)
         {
             _jobApplicationRepository = jobApplicationRepository;
             _jobPositionRepository = jobPositionRepository;
+            _agreementRepository = agreementRepository;
         }
 
         [HttpGet]
@@ -283,5 +285,25 @@ namespace IKBasvuru.UI.Controllers
 
             return RedirectToAction("ListPositions", "Admin");
         }
+
+        [HttpGet]
+        public IActionResult Editor()
+        {
+            Agreement agreement = _agreementRepository.Get(x => x.IsActive == true);
+
+            return View(agreement);
+        }
+
+        [HttpPost]
+        public IActionResult Editor(Agreement agreement)
+        {
+            agreement.ModifiedDate = DateTime.Now;
+            agreement.ModifiedBy = User.Identity.Name;
+
+            int affectedRow = _agreementRepository.Update(agreement);
+
+            return RedirectToAction("ListApplications", "Admin");
+        }
+
     }
 }

@@ -17,6 +17,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 //DIC for domain classes
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
 builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
+builder.Services.AddScoped<IAgreementRepository, AgreementRepository>();
 
 builder.Services.AddSession(s => { s.IdleTimeout = TimeSpan.FromMinutes(10); });
 
