@@ -26,7 +26,7 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult Application()
         {
-            OutputMessages outputMessage = HttpContext.Session.MySessionGet<OutputMessages>("modalmessage");
+            OutputMessages outputMessage = HttpContext.Session.MySessionGet<OutputMessages>("applicationModalMessage");
 
             ApplicationVM applicationVM = new ApplicationVM()
             {
@@ -56,7 +56,7 @@ namespace IKBasvuru.UI.Controllers
             }
             else
             {
-                HttpContext.Session.MySessionSet("modalmessage", OutputMessages.FileError);
+                HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.FileError);
 
                 return RedirectToAction("Application", "User");
             }
@@ -97,23 +97,23 @@ namespace IKBasvuru.UI.Controllers
                                 applicationVM.FormFile.CopyTo(stream);
                             }
 
-                            HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Success);
+                            HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Success);
 
                         }
                         else
                         {
-                            HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Failure);
+                            HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Failure);
                         }
 
                     }
                     else
                     {
-                        HttpContext.Session.MySessionSet("modalmessage", OutputMessages.FormatError);
+                        HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.FormatError);
                     }
                 }
                 else
                 {
-                    HttpContext.Session.MySessionSet("modalmessage", OutputMessages.ExtensionError);
+                    HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.ExtensionError);
 
                 }
 
@@ -121,7 +121,7 @@ namespace IKBasvuru.UI.Controllers
             }
             catch (Exception)
             {
-                HttpContext.Session.MySessionSet("modalmessage", OutputMessages.Failure);
+                HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Failure);
 
                 throw;
             }

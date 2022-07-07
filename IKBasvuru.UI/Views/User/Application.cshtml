@@ -10,10 +10,6 @@
 <hr />
 <form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
 
-    <div class="form-group mt-md-0">
-        <label asp-for="OutputMessage" class="control-label">@Html.DisplayFor(model => model.OutputMessage)</label> 
-    </div>  
-
     <div class="modal" id="infoModal">     
         <div class="modal-dialog">        
                 <div class="modal-content">           
@@ -26,7 +22,6 @@
                 </div>      
         </div>   
     </div>
-
 
     <div class="row">
         <div class="col-md-6">

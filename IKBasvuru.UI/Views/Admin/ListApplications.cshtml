@@ -1,9 +1,22 @@
-﻿@model List<ApplicationListVM>
+﻿@model ListApplicationsVM
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+<div class="modal" id="infoModal">     
+    <div class="modal-dialog">        
+            <div class="modal-content">           
+                <div class="modal-header">                  
+                    <h2 class="modal-title">İş Başvuruları Bilgi Ekranı</h2>        
+                </div>          
+            <div class="modal-body">            
+                @Html.DisplayFor(model => model.OutputMessage)       
+            </div>        
+            </div>      
+    </div>   
+</div>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -39,7 +52,9 @@
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model)
+                    @if (Model.Applications != null)
+                    {
+                        @foreach (var item in Model.Applications)
                     {
                         <tr>
                             @Html.HiddenFor(modelItem => item.Id)
@@ -68,6 +83,8 @@
 
                         </tr>
                     }
+                    }
+                    
                 </tbody>
 
                 <tfoot>
@@ -89,5 +106,16 @@
 
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+         <script type="text/javascript">
+
+        $(function() {
+
+            $(window).on('load', function() {
+                $('#infoModal').modal('show');        
+            });
+
+        });
+    </script>
 
 }

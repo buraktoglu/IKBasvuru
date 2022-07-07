@@ -1,7 +1,9 @@
-﻿using IKBasvuru.CORE.Validations;
+﻿using IKBasvuru.COMMON.Enums;
+using IKBasvuru.CORE.Validations;
 using IKBasvuru.DATA.Domain;
 using IKBasvuru.DATA.Repositories.Abstract;
 using IKBasvuru.DATA.ViewModels;
+using IKBasvuru.UI.Common;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +25,13 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult ListApplications()
         {
-            List<ApplicationListVM> applicationListVMs = _jobApplicationRepository.GetListOfApplications();
+            ListApplicationsVM listApplicationsVM = new ListApplicationsVM()
+            {
+                Applications = _jobApplicationRepository.GetListOfApplications(),
+                OutputMessage = HttpContext.Session.MySessionGet<OutputMessages>("listModalMessage"),
+            };
 
-            return View(applicationListVMs);
+            return View(listApplicationsVM);
         }
 
         [HttpGet]
@@ -55,15 +61,21 @@ namespace IKBasvuru.UI.Controllers
                 if (affectedRow == 1)
                 {
                     //işlem başarılı
+                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Success);
+
                 }
                 else
                 {
                     //işlem başarısız
+                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
+
                 }
             }
             catch (Exception)
             {
                 //işlem başarısız
+                HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
+
 
                 throw;
             }
@@ -99,15 +111,21 @@ namespace IKBasvuru.UI.Controllers
                 if (affectedRow == 1)
                 {
                     //işlem başarılı 
+                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Success);
+
                 }
                 else
                 {
                     //işlem başarısız
+                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
+
                 }
             }
             catch (Exception)
             {
                 //işlem başarısız
+                HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
+
 
                 throw;
             }
@@ -118,9 +136,14 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult ListPositions()
         {
-            List<JobPosition> jobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true);
+            ListPositionsVM listPositionsVM = new ListPositionsVM()
+            {
+                JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
+                OutputMessage = HttpContext.Session.MySessionGet<OutputMessages>("positionModalMessage")
 
-            return View(jobPositions);
+            };
+
+            return View(listPositionsVM);
         }
 
         [HttpGet]
@@ -144,17 +167,23 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
-                        //işlem başarılı 
+                        //işlem başarılı
+                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+
                     }
                     else
                     {
                         //işlem başarısız
+                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
                     }
                 }
             }
             catch (Exception)
             {
                 //işlem başarısız
+                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
 
                 throw;
             }
@@ -185,17 +214,23 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
-                        //işlem başarılı 
+                        //işlem başarılı
+                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+
                     }
                     else
                     {
                         //işlem başarısız
+                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
                     }
                 }
             }
             catch (Exception)
             {
                 //işlem başarısız
+                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
 
                 throw;
             }
@@ -224,15 +259,21 @@ namespace IKBasvuru.UI.Controllers
                 if (affectedRow == 1)
                 {
                     //işlem başarılı
+                    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+
                 }
                 else
                 {
                     //işlem başarısız
+                    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
                 }
             }
             catch (Exception)
             {
                 //işlem başarısız
+                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
 
                 throw;
             }

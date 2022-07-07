@@ -18,5 +18,8 @@ namespace IKBasvuru.DATA.ViewModels
         public ApplicationStatus? ApplicationStatus { get; set; }
         public string? FileName { get; set; }
         public string? FilePath { get; set; }
+
+        public OutputMessages OutputMessage { get; set; }
+
     }
 }
