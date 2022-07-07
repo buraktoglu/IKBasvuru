@@ -256,18 +256,21 @@ namespace IKBasvuru.UI.Controllers
                 jobPosition.ModifiedDate = DateTime.Now;
                 int affectedRow = _jobPositionRepository.Delete(jobPositionDeleted);
 
-                if (affectedRow == 1)
-                {
-                    //işlem başarılı
-                    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
 
-                }
-                else
-                {
-                    //işlem başarısız
-                    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
 
-                }
+                //if (affectedRow == 1)
+                //{
+                //    //işlem başarılı
+                //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+
+                //}
+                //else
+                //{
+                //    //işlem başarısız
+                //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
+
+                //}
             }
             catch (Exception)
             {
