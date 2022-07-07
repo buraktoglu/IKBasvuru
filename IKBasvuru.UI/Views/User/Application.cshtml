@@ -143,6 +143,7 @@
     <script type="text/javascript">
 
         $(function() {
+
             $('#KVKKCheck').change(function() {
                 if ($('#KVKKCheck').prop('checked') === false) {
                     $("#sendApplication").prop("disabled", true);
@@ -158,12 +159,16 @@
                 if (output == "1") {
 
                     $("#militaryStatus").show();
-
                 }
                 else {
-
                     $("#militaryStatus").hide();
                 }
+            });
+
+            $(document).ready(function() {
+
+                document.querySelector('.modal').classList.toggle('modal--hidden');
+
             });
         });
     </script>
