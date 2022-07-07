@@ -33,6 +33,9 @@
     {
     <script src="~/ckeditor5-build-classic/ckeditor.js"> </script>
     <script>
-        CKEDITOR.replace("editorid");
+        ClassicEditor
+            .create( document.querySelector( '#editorid' ) )
+            .catch( error => { console.error( error );
+        } );
     </script>
     }

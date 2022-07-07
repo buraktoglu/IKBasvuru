@@ -15,12 +15,14 @@ namespace IKBasvuru.UI.Controllers
         private readonly IJobApplicationRepository _jobApplicationRepository;
         private readonly IJobPositionRepository _jobPositionRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IAgreementRepository _agreementRepository;
 
-        public UserController(IJobApplicationRepository jobApplicationRepository, IJobPositionRepository jobPositionRepository, IWebHostEnvironment webHostEnvironment)
+        public UserController(IJobApplicationRepository jobApplicationRepository, IJobPositionRepository jobPositionRepository, IWebHostEnvironment webHostEnvironment, IAgreementRepository agreementRepository)
         {
             _jobApplicationRepository = jobApplicationRepository;
             _jobPositionRepository = jobPositionRepository;
             _webHostEnvironment = webHostEnvironment;
+            _agreementRepository = agreementRepository;
         }
 
         [HttpGet]
@@ -31,6 +33,7 @@ namespace IKBasvuru.UI.Controllers
             ApplicationVM applicationVM = new ApplicationVM()
             {
                 JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
+                Text = _agreementRepository.Get(x => x.IsActive == true).Text,
                 OutputMessage = outputMessage
             };
 

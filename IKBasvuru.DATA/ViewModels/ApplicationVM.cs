@@ -57,6 +57,8 @@ namespace IKBasvuru.DATA.ViewModels
 
         public OutputMessages OutputMessage { get; set; }
 
+        public string? Text { get; set; }
+
         public List<JobPosition>? JobPositions { get; set; }
     }
 }
