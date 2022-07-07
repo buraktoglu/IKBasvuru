@@ -11,21 +11,22 @@
 <form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
 
     <div class="form-group mt-md-0">
-        <label asp-for="OutputMessage" class="control-label">@Model.OutputMessage</label>
+        <label asp-for="OutputMessage" class="control-label">@Html.DisplayFor(model => model.OutputMessage)</label> 
+    </div>  
+
+    <div class="modal" id="infoModal">     
+        <div class="modal-dialog">        
+                <div class="modal-content">           
+                    <div class="modal-header">                  
+                        <h2 class="modal-title">Özgeçmiş Yükleme Bilgi Ekranı</h2>        
+                    </div>          
+                <div class="modal-body">            
+                    @Html.DisplayFor(model => model.OutputMessage)       
+                </div>        
+                </div>      
+        </div>   
     </div>
 
-    <div class="modal form-group">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Özgeçmiş Yükleme Ekranı </h2>
-                </div>
-                <div class="modal-body">
-                    @Model.OutputMessage
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="row">
         <div class="col-md-6">
@@ -144,6 +145,11 @@
 
         $(function() {
 
+            $(window).on('load', function() {
+                $('#infoModal').modal('show');        
+            });
+
+
             $('#KVKKCheck').change(function() {
                 if ($('#KVKKCheck').prop('checked') === false) {
                     $("#sendApplication").prop("disabled", true);
@@ -163,12 +169,6 @@
                 else {
                     $("#militaryStatus").hide();
                 }
-            });
-
-            $(document).ready(function() {
-
-                document.querySelector('.modal').classList.toggle('modal--hidden');
-
             });
         });
     </script>
