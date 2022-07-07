@@ -45,12 +45,12 @@ namespace IKBasvuru.COMMON.Enums
 
     public enum OutputMessages
     {
-        [Display(Name = "İşleminiz Başarılı")]
-        Success = 0,
-        [Display(Name = "İşleminiz Başarısız")]
-        Failure = 1,
-        [Display(Name = "Hoşgeldiniz. Lütfen iş başvurunuzu tamamlayınız")]
-        Welcome = 3,
+        [Display(Name = "Hoşgeldiniz. Lütfen iş başvurunuzu tamamlayınız")] 
+        Welcome = 0, 
+        [Display(Name = "İşleminiz Başarılı")] 
+        Success = 1, 
+        [Display(Name = "İşleminiz Başarısız")] 
+        Failure = 2,
         [Display(Name = "Dosya Hatası")]
         FileError = 3,
         [Display(Name = "Dosya Uzantısı Hatası")]

@@ -28,11 +28,6 @@ namespace IKBasvuru.UI.Controllers
         {
             OutputMessages outputMessage = HttpContext.Session.MySessionGet<OutputMessages>("modalmessage");
 
-            if (outputMessage == null)
-            {
-                outputMessage = OutputMessages.Welcome;
-            }
-
             ApplicationVM applicationVM = new ApplicationVM()
             {
                 JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
