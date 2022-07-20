@@ -10,21 +10,8 @@
 <hr />
 <form asp-controller="User" asp-action="Application" method="post" enctype="multipart/form-data">
 
-    <div class="modal" id="infoModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Özgeçmiş Yükleme Bilgi Ekranı</h2>
-                </div>
-                <div class="modal-body">
-                    @TempData["applicationModalMessage"]
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="kvkkModal">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Aydınlatma ve Açık Rıza Beyan Metinleri</h2>
@@ -153,12 +140,16 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
+    <link href="/js/content/content/toastr.min.css" rel="stylesheet" />
+    <script src="/js/content/scripts/toastr.min.js"></script>
+
     <script type="text/javascript">
 
         $(function() {
 
             $(window).on('load', function() {
-                $('#infoModal').modal('show');
+                toastr['@TempData["applicationModalMessageType"]']('@TempData["applicationModalMessage"]');
+
                 });
 
             $('#modalShow').on('click', function() {

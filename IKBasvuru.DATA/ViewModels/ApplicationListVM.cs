@@ -19,7 +19,5 @@ namespace IKBasvuru.DATA.ViewModels
         public string? FileName { get; set; }
         public string? FilePath { get; set; }
 
-        public OutputMessages OutputMessage { get; set; }
-
     }
 }

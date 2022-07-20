@@ -31,6 +31,7 @@ namespace IKBasvuru.UI.Controllers
 
             if (message == null)
             {
+                TempData["listModalMessageType"] = "info";
                 TempData["listModalMessage"] = "Hoşgeldiniz.";
             }
 
@@ -65,15 +66,18 @@ namespace IKBasvuru.UI.Controllers
 
                 if (affectedRow == 1)
                 {
+                    TempData["listModalMessageType"] = "success";
                     TempData["listModalMessage"] = "İşleminiz Başarılı.";
                 }
                 else
                 {
+                    TempData["listModalMessageType"] = "error";
                     TempData["listModalMessage"] = "İşleminiz Başarısız.";
                 }
             }
             catch (Exception)
             {
+                TempData["listModalMessageType"] = "error";
                 TempData["listModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
@@ -107,19 +111,13 @@ namespace IKBasvuru.UI.Controllers
                 jobApplication.ModifiedDate = DateTime.Now;
                 int affectedRow = _jobApplicationRepository.Delete(jobApplication);
 
+                TempData["listModalMessageType"] = "success";
                 TempData["listModalMessage"] = "İşleminiz Başarılı.";
 
-                //if (affectedRow == 1)
-                //{
-                //    TempData["listModalMessage"] = "İşleminiz Başarılı.";
-                //}
-                //else
-                //{
-                //    TempData["listModalMessage"] = "İşleminiz Başarısız.";
-                //}
             }
             catch (Exception)
             {
+                TempData["listModalMessageType"] = "error";
                 TempData["listModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
@@ -135,6 +133,7 @@ namespace IKBasvuru.UI.Controllers
 
             if (message == null)
             {
+                TempData["positionModalMessageType"] = "info";
                 TempData["positionModalMessage"] = "Hoşgeldiniz.";
             }
 
@@ -164,16 +163,19 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
+                        TempData["positionModalMessageType"] = "success";
                         TempData["positionModalMessage"] = "İşleminiz Başarılı.";
                     }
                     else
                     {
+                        TempData["positionModalMessageType"] = "error";
                         TempData["positionModalMessage"] = "İşleminiz Başarısız.";
                     }
                 }
             }
             catch (Exception)
             {
+                TempData["positionModalMessageType"] = "error";
                 TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
@@ -205,16 +207,19 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
+                        TempData["positionModalMessageType"] = "success";
                         TempData["positionModalMessage"] = "İşleminiz Başarılı.";
                     }
                     else
                     {
+                        TempData["positionModalMessageType"] = "error";
                         TempData["positionModalMessage"] = "İşleminiz Başarısız.";
                     }
                 }
             }
             catch (Exception)
             {
+                TempData["positionModalMessageType"] = "error";
                 TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
@@ -241,23 +246,13 @@ namespace IKBasvuru.UI.Controllers
                 jobPosition.ModifiedDate = DateTime.Now;
                 int affectedRow = _jobPositionRepository.Delete(jobPositionDeleted);
 
+                TempData["positionModalMessageType"] = "success";
                 TempData["positionModalMessage"] = "İşleminiz Başarılı.";
 
-
-                //if (affectedRow == 1)
-                //{
-                //    //işlem başarılı
-                //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
-                //}
-
-                //else
-                //{
-                //    //işlem başarısız
-                //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-                //}
             }
             catch (Exception)
             {
+                TempData["positionModalMessageType"] = "error";
                 TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;

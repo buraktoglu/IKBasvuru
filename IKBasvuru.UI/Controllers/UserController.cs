@@ -32,6 +32,7 @@ namespace IKBasvuru.UI.Controllers
 
             if (message == null)
             {
+                TempData["applicationModalMessageType"] = "info";
                 TempData["applicationModalMessage"] = "Hoşgeldiniz.";
             }
 
@@ -61,8 +62,8 @@ namespace IKBasvuru.UI.Controllers
             }
             else
             {
+                TempData["applicationModalMessageType"] = "error";
                 TempData["applicationModalMessage"] = "Dosya Hatası. Yüklenilen dosya bulunamadı. Lütfen dosyanın yüklendiğinden emin olarak tekrar deneyiniz.";
-
 
                 return RedirectToAction("Application", "User");
             }
@@ -103,29 +104,34 @@ namespace IKBasvuru.UI.Controllers
                                 applicationVM.FormFile.CopyTo(stream);
                             }
 
+                            TempData["applicationModalMessageType"] = "success";
                             TempData["applicationModalMessage"] = "İşleminiz Başarılı.";
 
 
                         }
                         else
                         {
+                            TempData["applicationModalMessageType"] = "error";
                             TempData["applicationModalMessage"] = "İşleminiz Başarısız.";
                         }
 
                     }
                     else
                     {
+                        TempData["applicationModalMessageType"] = "error";
                         TempData["applicationModalMessage"] = "Format Hatası. Girdiğiniz bilgilerin formatını kontrol ederek tekrar deneyiniz.";
                     }
                 }
                 else
                 {
+                    TempData["applicationModalMessageType"] = "error";
                     TempData["applicationModalMessage"] = "Dosya Uzantısı Hatası. Yüklediğiniz dosya uzantısı sistem tarafından kabul edilmemektedir. " +
                     "Lütfen dosya uzantınızı '.doc - .docx - .pdf - .xls - .xlsx - .rtf - .odt' olduğundan emin olarak tekrar deneyiniz. ";
                 }
             }
             catch (Exception)
             {
+                TempData["applicationModalMessageType"] = "error";
                 TempData["applicationModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
