@@ -55,8 +55,6 @@ namespace IKBasvuru.DATA.ViewModels
         public string? FilePath { get; set; }
         public IFormFile? FormFile { get; set; }
 
-        public OutputMessages OutputMessage { get; set; }
-
         public string? Text { get; set; }
 
         public List<JobPosition>? JobPositions { get; set; }

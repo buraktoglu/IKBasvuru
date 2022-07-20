@@ -28,13 +28,17 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult Application()
         {
-            OutputMessages outputMessage = HttpContext.Session.MySessionGet<OutputMessages>("applicationModalMessage");
+            var message = TempData["applicationModalMessage"];
+
+            if (message == null)
+            {
+                TempData["applicationModalMessage"] = "Hoşgeldiniz.";
+            }
 
             ApplicationVM applicationVM = new ApplicationVM()
             {
                 JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
                 Text = _agreementRepository.Get(x => x.IsActive == true).Text,
-                OutputMessage = outputMessage
             };
 
             return View(applicationVM);
@@ -50,16 +54,15 @@ namespace IKBasvuru.UI.Controllers
             if (applicationVM.FormFile != null)
             {
                 extent = Path.GetExtension(applicationVM.FormFile.FileName);
-                randomName = ($"{Guid.NewGuid()}{extent}");
-
-                // path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\CVs\\", randomName);
+                randomName = ($"{applicationVM.Surname}-{Guid.NewGuid()}{extent}");
 
                 string webRootPath = _webHostEnvironment.WebRootPath;
                 path = Path.Combine(webRootPath, "CVs", randomName);
             }
             else
             {
-                HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.FileError);
+                TempData["applicationModalMessage"] = "Dosya Hatası. Yüklenilen dosya bulunamadı. Lütfen dosyanın yüklendiğinden emin olarak tekrar deneyiniz.";
+
 
                 return RedirectToAction("Application", "User");
             }
@@ -100,31 +103,30 @@ namespace IKBasvuru.UI.Controllers
                                 applicationVM.FormFile.CopyTo(stream);
                             }
 
-                            HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Success);
+                            TempData["applicationModalMessage"] = "İşleminiz Başarılı.";
+
 
                         }
                         else
                         {
-                            HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Failure);
+                            TempData["applicationModalMessage"] = "İşleminiz Başarısız.";
                         }
 
                     }
                     else
                     {
-                        HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.FormatError);
+                        TempData["applicationModalMessage"] = "Format Hatası. Girdiğiniz bilgilerin formatını kontrol ederek tekrar deneyiniz.";
                     }
                 }
                 else
                 {
-                    HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.ExtensionError);
-
+                    TempData["applicationModalMessage"] = "Dosya Uzantısı Hatası. Yüklediğiniz dosya uzantısı sistem tarafından kabul edilmemektedir. " +
+                    "Lütfen dosya uzantınızı '.doc - .docx - .pdf - .xls - .xlsx - .rtf - .odt' olduğundan emin olarak tekrar deneyiniz. ";
                 }
-
-
             }
             catch (Exception)
             {
-                HttpContext.Session.MySessionSet("applicationModalMessage", OutputMessages.Failure);
+                TempData["applicationModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }

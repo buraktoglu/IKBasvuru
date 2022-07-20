@@ -51,7 +51,7 @@ namespace IKBasvuru.COMMON.Enums
         Success = 1, 
         [Display(Name = "İşleminiz Başarısız.")] 
         Failure = 2,
-        [Display(Name = "Dosya Hatası. Yüklenilen dosya bulunamadı. Lütefen tekrar deneyiniz.")]
+        [Display(Name = "Dosya Hatası. Yüklenilen dosya bulunamadı. Lütfen dosyanın yüklendiğinden emin olarak tekrar deneyiniz.")]
         FileError = 3,
         [Display(Name = "Dosya Uzantısı Hatası. Yüklediğiniz dosya uzantısı sistem tarafından kabul edilmemektedir. " +
             "Lütfen dosya uzantınızı '.doc - .docx - .pdf - .xls - .xlsx - .rtf - .odt' olduğundan emin olarak tekrar deneyiniz. ")]

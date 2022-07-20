@@ -17,14 +17,14 @@
                     <h2 class="modal-title">Özgeçmiş Yükleme Bilgi Ekranı</h2>
                 </div>
                 <div class="modal-body">
-                    @Html.DisplayFor(model => model.OutputMessage)
+                    @TempData["applicationModalMessage"]
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="kvkkModal">
-        <div class="modal-dialog">
+    <div class="modal fade" id="kvkkModal">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Aydınlatma ve Açık Rıza Beyan Metinleri</h2>
@@ -122,13 +122,17 @@
 
             <div class="form-group row col-md-12">
 
-                <label asp-for="KVKKCheck" class="control-label mr-5">Çalışan Adayı Aydınlatma ve Çalışan Adayı Açık Rıza Beyanı metinlerini okudum ve şartları kabul ediyorum..</label>
+                <label asp-for="KVKKCheck" class="control-label mr-5">Çalışan Adayı Aydınlatma ve Çalışan Adayı Açık Rıza Beyanı metinlerini okudum ve şartları kabul ediyorum.</label>           
                 <label class="switch">
                     <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                     <slider class="slider round">
                     </slider>
                 </label>
                 <span asp-validation-for="KVKKCheck" class="text-danger"></span>
+            </div>
+
+            <div class="form-group row col-md-12">
+                 <label id="modalShow" class="control-label mr-5">Metinleri görüntülemek için tıklayınız. </label>  
             </div>
 
             <div class="form-group row mt-md-5">
@@ -155,9 +159,9 @@
 
             $(window).on('load', function() {
                 $('#infoModal').modal('show');
-            });
+                });
 
-            $('#KVKKCheck').on('click', function() {
+            $('#modalShow').on('click', function() {
                 $('#kvkkModal').modal('show');
             });
 
@@ -185,8 +189,6 @@
     </script>
 
 }
-
-
 
     <style>
 

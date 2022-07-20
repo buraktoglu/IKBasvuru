@@ -1,21 +1,21 @@
-﻿@model ListPositionsVM
+﻿@model List<JobPosition>
 
 @{
     ViewData["Title"] = "ListPositions";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="modal" id="infoModal">     
-    <div class="modal-dialog">        
-            <div class="modal-content">           
-                <div class="modal-header">                  
-                    <h2 class="modal-title">İş Pozisyonu Bilgi Ekranı</h2>        
-                </div>          
-            <div class="modal-body">            
-                @Html.DisplayFor(model => model.OutputMessage)       
-            </div>        
-            </div>      
-    </div>   
+<div class="modal" id="infoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">İş Pozisyonu Bilgi Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                @TempData["positionModalMessage"]
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="card shadow mb-4">
@@ -38,9 +38,9 @@
                 </thead>
 
                 <tbody>
-                    @if (Model.JobPositions != null)
+                    @if (Model != null)
                     {
-                        @foreach (var item in Model.JobPositions)
+                        @foreach (var item in Model)
                         {
                             <tr>
                                 @Html.HiddenFor(modelItem => item.Id)
@@ -53,7 +53,7 @@
 
                                 <td class="d-flex justify-content-between">
                                     <a asp-controller="Admin" asp-action="DeletePosition" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Sil</a>
-                                    <a asp-controller="Admin" asp-action="UpdatePosition" asp-route-id="@item.Id" class="btn btn-danger col-md-5">Güncelle</a>
+                                    <a asp-controller="Admin" asp-action="UpdatePosition" asp-route-id="@item.Id" class="btn btn-primary col-md-5">Güncelle</a>
                                 </td>
 
                             </tr>
@@ -82,13 +82,36 @@
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-     <script type="text/javascript">
+    <link href="toastr.css" rel="stylesheet" />
+    <script src="toastr.js"></script>
+
+    <script type="text/javascript">
+
+
 
         $(function() {
 
             $(window).on('load', function() {
-                $('#infoModal').modal('show');        
-            });
+                $('#infoModal').modal('show');
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "1000",
+                    "hideDuration": "1000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                toastr.info(@TempData["positionModalMessage"]);
+                });
 
         });
     </script>

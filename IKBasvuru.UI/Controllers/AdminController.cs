@@ -27,13 +27,16 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult ListApplications()
         {
-            ListApplicationsVM listApplicationsVM = new ListApplicationsVM()
-            {
-                Applications = _jobApplicationRepository.GetListOfApplications(),
-                OutputMessage = HttpContext.Session.MySessionGet<OutputMessages>("listModalMessage"),
-            };
+            var message = TempData["listModalMessage"];
 
-            return View(listApplicationsVM);
+            if (message == null)
+            {
+                TempData["listModalMessage"] = "Hoşgeldiniz.";
+            }
+
+            List<ApplicationListVM> applications = _jobApplicationRepository.GetListOfApplications();
+
+            return View(applications);
         }
 
         [HttpGet]
@@ -50,7 +53,7 @@ namespace IKBasvuru.UI.Controllers
         public IActionResult Details(ApplicationDetailsVM detailsVM)
         {
             JobApplication jobApplication = _jobApplicationRepository.Get(e => e.Id == detailsVM.Id);
-            
+
             jobApplication.Note = detailsVM.Note;
             jobApplication.ApplicationStatus = detailsVM.ApplicationStatus;
             jobApplication.ModifiedBy = User.Identity.Name;
@@ -62,22 +65,16 @@ namespace IKBasvuru.UI.Controllers
 
                 if (affectedRow == 1)
                 {
-                    //işlem başarılı
-                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Success);
-
+                    TempData["listModalMessage"] = "İşleminiz Başarılı.";
                 }
                 else
                 {
-                    //işlem başarısız
-                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
-
+                    TempData["listModalMessage"] = "İşleminiz Başarısız.";
                 }
             }
             catch (Exception)
             {
-                //işlem başarısız
-                HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
-
+                TempData["listModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }
@@ -110,24 +107,20 @@ namespace IKBasvuru.UI.Controllers
                 jobApplication.ModifiedDate = DateTime.Now;
                 int affectedRow = _jobApplicationRepository.Delete(jobApplication);
 
-                if (affectedRow == 1)
-                {
-                    //işlem başarılı 
-                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Success);
+                TempData["listModalMessage"] = "İşleminiz Başarılı.";
 
-                }
-                else
-                {
-                    //işlem başarısız
-                    HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
-
-                }
+                //if (affectedRow == 1)
+                //{
+                //    TempData["listModalMessage"] = "İşleminiz Başarılı.";
+                //}
+                //else
+                //{
+                //    TempData["listModalMessage"] = "İşleminiz Başarısız.";
+                //}
             }
             catch (Exception)
             {
-                //işlem başarısız
-                HttpContext.Session.MySessionSet("listModalMessage", OutputMessages.Failure);
-
+                TempData["listModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }
@@ -138,14 +131,16 @@ namespace IKBasvuru.UI.Controllers
         [HttpGet]
         public IActionResult ListPositions()
         {
-            ListPositionsVM listPositionsVM = new ListPositionsVM()
+            var message = TempData["positionModalMessage"];
+
+            if (message == null)
             {
-                JobPositions = _jobPositionRepository.GetAll(x => x.IsActive == true),
-                OutputMessage = HttpContext.Session.MySessionGet<OutputMessages>("positionModalMessage")
+                TempData["positionModalMessage"] = "Hoşgeldiniz.";
+            }
 
-            };
+            List<JobPosition> jobs = _jobPositionRepository.GetAll(x => x.IsActive == true);
 
-            return View(listPositionsVM);
+            return View(jobs);
         }
 
         [HttpGet]
@@ -169,23 +164,17 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
-                        //işlem başarılı
-                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
-
+                        TempData["positionModalMessage"] = "İşleminiz Başarılı.";
                     }
                     else
                     {
-                        //işlem başarısız
-                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
+                        TempData["positionModalMessage"] = "İşleminiz Başarısız.";
                     }
                 }
             }
             catch (Exception)
             {
-                //işlem başarısız
-                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
+                TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }
@@ -216,23 +205,17 @@ namespace IKBasvuru.UI.Controllers
 
                     if (affectedRow == 1)
                     {
-                        //işlem başarılı
-                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
-
+                        TempData["positionModalMessage"] = "İşleminiz Başarılı.";
                     }
                     else
                     {
-                        //işlem başarısız
-                        HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
+                        TempData["positionModalMessage"] = "İşleminiz Başarısız.";
                     }
                 }
             }
             catch (Exception)
             {
-                //işlem başarısız
-                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
+                TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }
@@ -258,27 +241,24 @@ namespace IKBasvuru.UI.Controllers
                 jobPosition.ModifiedDate = DateTime.Now;
                 int affectedRow = _jobPositionRepository.Delete(jobPositionDeleted);
 
-                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
+                TempData["positionModalMessage"] = "İşleminiz Başarılı.";
 
 
                 //if (affectedRow == 1)
                 //{
                 //    //işlem başarılı
                 //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Success);
-
                 //}
+
                 //else
                 //{
                 //    //işlem başarısız
                 //    HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
                 //}
             }
             catch (Exception)
             {
-                //işlem başarısız
-                HttpContext.Session.MySessionSet("positionModalMessage", OutputMessages.Failure);
-
+                TempData["positionModalMessage"] = "İşleminiz Başarısız.";
 
                 throw;
             }

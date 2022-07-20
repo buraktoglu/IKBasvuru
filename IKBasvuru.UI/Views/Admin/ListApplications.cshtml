@@ -1,21 +1,21 @@
-﻿@model ListApplicationsVM
+﻿@model List<ApplicationListVM>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="modal" id="infoModal">     
-    <div class="modal-dialog">        
-            <div class="modal-content">           
-                <div class="modal-header">                  
-                    <h2 class="modal-title">İş Başvuruları Bilgi Ekranı</h2>        
-                </div>          
-            <div class="modal-body">            
-                @Html.DisplayFor(model => model.OutputMessage)       
-            </div>        
-            </div>      
-    </div>   
+<div class="modal" id="infoModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">İş Başvuruları Bilgi Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                @TempData["listModalMessage"]
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="card shadow mb-4">
@@ -52,39 +52,39 @@
                 </thead>
 
                 <tbody>
-                    @if (Model.Applications != null)
+                    @if (Model != null)
                     {
-                        @foreach (var item in Model.Applications)
-                    {
-                        <tr>
-                            @Html.HiddenFor(modelItem => item.Id)
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Surname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.JobPosition)
-                            </td>
-                            <td>
-                                <a href="@item.FilePath"> @Html.DisplayFor(modelItem => item.FileName)</a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ApplicationStatus)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Note)
-                            </td>
-                            <td class="d-flex justify-content-center">
-                                <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-fluid m-1">Sil</a>
-                                <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-fluid m-1">Detayları Görüntüle</a>
-                            </td>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @Html.HiddenFor(modelItem => item.Id)
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JobPosition)
+                                </td>
+                                <td>
+                                    <a href="@item.FilePath"> @Html.DisplayFor(modelItem => item.FileName)</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApplicationStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Note)
+                                </td>
+                                <td class="d-flex justify-content-center">
+                                    <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-fluid m-1">Sil</a>
+                                    <a asp-controller="Admin" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-fluid m-1">Detayları Görüntüle</a>
+                                </td>
 
-                        </tr>
+                            </tr>
+                        }
                     }
-                    }
-                    
+
                 </tbody>
 
                 <tfoot>
@@ -107,12 +107,12 @@
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-         <script type="text/javascript">
+    <script type="text/javascript">
 
         $(function() {
 
             $(window).on('load', function() {
-                $('#infoModal').modal('show');        
+                $('#infoModal').modal('show');
             });
 
         });
