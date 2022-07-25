@@ -47,15 +47,7 @@ namespace IKBasvuru.DATA.Context
 
                 entity.Property(e => e.Surname).IsRequired();
 
-                entity.Property(e => e.Gender).IsRequired();
-
-                entity.Property(e => e.BirthDate).IsRequired().HasColumnType("datetime");
-
-                entity.Property(e => e.MaritalStatus).IsRequired();
-
                 entity.Property(e => e.ApplicationStatus);
-
-                entity.Property(e => e.MilitaryService).IsRequired();
 
                 entity.Property(e => e.Note);
 
@@ -65,7 +57,15 @@ namespace IKBasvuru.DATA.Context
 
                 entity.Property(e => e.Email).IsRequired();
 
-                entity.Property(e => e.Address).IsRequired();
+                //entity.Property(e => e.Gender).IsRequired();
+
+                //entity.Property(e => e.BirthDate).IsRequired().HasColumnType("datetime");
+
+                //entity.Property(e => e.MaritalStatus).IsRequired();
+
+                //entity.Property(e => e.MilitaryService).IsRequired();
+
+                //entity.Property(e => e.Address).IsRequired();
 
                 entity.Property(e => e.FileName).IsRequired();
 

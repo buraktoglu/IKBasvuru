@@ -16,22 +16,22 @@ namespace IKBasvuru.DATA.Domain
         public string? Name { get; set; }
 
         public string? Surname { get; set; }
-        
-        public Gender? Gender { get; set; }
-
-        public DateTime BirthDate { get; set; } = DateTime.Now;
-
-        public MaritalStatus? MaritalStatus { get; set; }
 
         public bool KVKKCheck { get; set; }
-
-        public bool MilitaryService { get; set; } = false;
 
         public string? Email { get; set; }
 
         public string? PhoneNumber { get; set; }
 
-        public string? Address { get; set; }
+        //public Gender? Gender { get; set; }
+
+        //public DateTime BirthDate { get; set; } = DateTime.Now;
+
+        //public MaritalStatus? MaritalStatus { get; set; }
+
+        //public bool MilitaryService { get; set; } = false;
+
+        //public string? Address { get; set; }
 
         public ApplicationStatus? ApplicationStatus { get; set; } = COMMON.Enums.ApplicationStatus.Accepted;
 
