@@ -6,6 +6,7 @@ using IKBasvuru.DATA.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using IKBasvuru.UI.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IKBasvuru.UI.Controllers
 {
@@ -26,6 +27,7 @@ namespace IKBasvuru.UI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Application()
         {
             var message = TempData["applicationModalMessage"];
@@ -46,6 +48,7 @@ namespace IKBasvuru.UI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Application(ApplicationVM applicationVM)
         {
             string randomName;

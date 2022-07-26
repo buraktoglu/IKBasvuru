@@ -60,15 +60,8 @@ namespace IKBasvuru.DATA.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ApplicationStatus")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime");
@@ -85,9 +78,6 @@ namespace IKBasvuru.DATA.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -95,12 +85,6 @@ namespace IKBasvuru.DATA.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("KVKKCheck")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MaritalStatus")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("MilitaryService")
                         .HasColumnType("bit");
 
                     b.Property<string>("ModifiedBy")
