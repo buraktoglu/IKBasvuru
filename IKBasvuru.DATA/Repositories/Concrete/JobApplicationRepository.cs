@@ -22,25 +22,30 @@ namespace IKBasvuru.DATA.Repositories.Concrete
         public List<ApplicationListVM> GetListOfApplications()
         {
             List<JobPosition> jobs = _jobPositionRepository.GetAll();
+            List<JobApplication> applicationList = this.GetAll(e => e.IsActive == true);
+
             List<ApplicationListVM> list = new List<ApplicationListVM>();
 
-            foreach (var item in this.GetAll(e => e.IsActive == true))
+            if (applicationList != null && jobs != null)
             {
-                ApplicationListVM vm = new ApplicationListVM()
+                foreach (var item in applicationList)
                 {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Surname = item.Surname,
-                    JobPosition = jobs[item.JobPositionId].Name,
-                    ApplicationStatus = item.ApplicationStatus,
-                    Note = item.Note,
-                    FileName = item.FileName,
-                    FilePath = item.FilePath
-                };
+                    ApplicationListVM vm = new ApplicationListVM()
+                    {
+                        Id = item.Id,
+                        Name = item.Name,
+                        Surname = item.Surname,
+                        JobPosition = jobs[item.JobPositionId - 1].Name,
+                        ApplicationStatus = item.ApplicationStatus,
+                        Note = item.Note,
+                        FileName = item.FileName,
+                        FilePath = item.FilePath
+                    };
 
-                list.Add(vm);
+                    list.Add(vm);
+                }
             }
-            
+
             return list;
         }
 
