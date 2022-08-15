@@ -92,7 +92,7 @@ namespace IKBasvuru.UI.Controllers
             {
                 extent = extent.ToLower();
 
-                if( !(new[] {".pdf" , ".doc", ".docx", ".xls", ".xlsx", ".odt", ".rtf"}.Contains(extent)))
+                if (extent == ".pdf" || extent == ".doc" || extent == ".docx" || extent == ".xls" || extent == ".xlsx" || extent == ".odt" || extent == ".rtf")
                 {
                     var validate = new JobApplicationValidator().Validate(jobApplication);
 
@@ -142,7 +142,5 @@ namespace IKBasvuru.UI.Controllers
 
             return RedirectToAction("Application", "User");
         }
-
-        public 
     }
 }
