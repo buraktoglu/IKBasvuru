@@ -15,6 +15,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Aydınlatma ve Açık Rıza Beyan Metinleri</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     @Html.Raw(Model.Text)
@@ -48,37 +51,39 @@
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
 
-@*            <div class="form-group">
-                <label asp-for="Gender" class="control-label">Cinsiyet</label>
-                <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" id="genderSelection">
-                    <option value="" hidden disable selected="selected">Cinsiyet Seçiniz</option>
-                </select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
+            @*            <div class="form-group">
+            <label asp-for="Gender" class="control-label">Cinsiyet</label>
+            <select asp-for="Gender" asp-items="@Html.GetEnumSelectList<Gender>()" class="form-control" id="genderSelection">
+            <option value="" hidden disable selected="selected">Cinsiyet Seçiniz</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
 
             <div class="form-group row col-md-12" id="militaryStatus" style="display: none">
 
-                <label asp-for="MilitaryStatus" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
-                <label class="switch">
-                    <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox">
-                    <slider class="slider round">
-                    </slider>
-                </label>
+            <label asp-for="MilitaryStatus" class="control-label mr-5">Askerlik hizmetimi tamamladım.</label>
+            <label class="switch">
+            <input class="form-check-input mr-4" asp-for="MilitaryStatus" type="checkbox">
+            <slider class="slider round">
+            </slider>
+            </label>
             </div>
 
             <div class="form-group">
-                <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
-                <select asp-for="MaritalStatus" asp-items="@Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
-                    <option value="" hidden disable selected="selected">Medeni Hal Seçiniz</option>
-                </select>
-                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+            <label asp-for="MaritalStatus" class="control-label">Medeni Hal</label>
+            <select asp-for="MaritalStatus" asp-items="@Html.GetEnumSelectList<MaritalStatus>()" class="form-control">
+            <option value="" hidden disable selected="selected">Medeni Hal Seçiniz</option>
+            </select>
+            <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>*@
 
             <div class="row col-md-6">
                 <label for="exampleFormControlFile1">Özgeçmişinizi yükleyiniz.</label>
                 <input asp-for="FormFile" type="file" name="FormFile" class="form-control-file" id="exampleFormControlFile1">
+                <a asp-controller="User" asp-action="ViewAttachment" ></a>
             </div>
 
+            
         </div>
 
         <div class="col-md-6">
@@ -95,21 +100,21 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
-@*            <div class="form-group">
-                <label asp-for="BirthDate" class="control-label">Doğum Tarihi</label>
-                <input type="date" asp-for="BirthDate" class="form-control" value="" />
-                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            @*            <div class="form-group">
+            <label asp-for="BirthDate" class="control-label">Doğum Tarihi</label>
+            <input type="date" asp-for="BirthDate" class="form-control" value="" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Address" class="control-label">Adres</label>
-                <textarea asp-for="Address" class="form-control"></textarea>
-                <span asp-validation-for="Address" class="text-danger"></span>
+            <label asp-for="Address" class="control-label">Adres</label>
+            <textarea asp-for="Address" class="form-control"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
             </div>*@
 
             <div class="form-group row col-md-12">
 
-                <label asp-for="KVKKCheck" class="control-label mr-5">Çalışan Adayı Aydınlatma ve Çalışan Adayı Açık Rıza Beyanı metinlerini okudum ve şartları kabul ediyorum.</label>           
+                <label asp-for="KVKKCheck" class="control-label mr-5">Çalışan Adayı Aydınlatma ve Çalışan Adayı Açık Rıza Beyanı metinlerini okudum ve şartları kabul ediyorum.</label>
                 <label class="switch">
                     <input class="form-check-input mr-4" asp-for="KVKKCheck" type="checkbox">
                     <slider class="slider round">
@@ -119,7 +124,7 @@
             </div>
 
             <div class="form-group row col-md-12">
-                 <label id="modalShow" class="control-label mr-5">Metinleri görüntülemek için tıklayınız. </label>  
+                <label id="modalShow" class="control-label mr-5">Metinleri görüntülemek için tıklayınız. </label>
             </div>
 
             <div class="form-group row mt-md-5">
@@ -140,8 +145,8 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    <link href="/js/content/content/toastr.min.css" rel="stylesheet" />
-    <script src="/js/content/scripts/toastr.min.js"></script>
+    <link href="~/js/content/content/toastr.min.css" rel="stylesheet" />
+    <script src="~/js/content/scripts/toastr.min.js"></script>
 
     <script type="text/javascript">
 
@@ -150,7 +155,7 @@
             $(window).on('load', function() {
                 toastr['@TempData["applicationModalMessageType"]']('@TempData["applicationModalMessage"]');
 
-                });
+            });
 
             $('#modalShow').on('click', function() {
                 $('#kvkkModal').modal('show');
