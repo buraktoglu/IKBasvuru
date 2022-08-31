@@ -62,7 +62,7 @@ namespace IKBasvuru.DATA.Repositories.Concrete
                 Email = jobApplication.Email,
                 FileName = jobApplication.FileName,
                 FilePath = jobApplication.FilePath,
-                JobPosition = jobs[jobApplication.JobPositionId].Name,
+                JobPosition = jobs[jobApplication.JobPositionId - 1].Name,
                 //Gender = jobApplication.Gender,
                 //Address = jobApplication.Address,
                 //BirthDate = jobApplication.BirthDate,
